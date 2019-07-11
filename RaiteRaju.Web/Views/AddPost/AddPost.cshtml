@@ -69,9 +69,8 @@
     }
 
     function validation() {
-
         var image = jQuery("#myImage").val();
-        var ddlCategory = jQuery("#ddlCategory");
+        var ddlCategory = jQuery("#ddlCategory option:selected").text();
         var ddlUnit = jQuery("#ddlUnit");
 
         var file = jQuery('input[type="file"]').val();
@@ -81,21 +80,21 @@
         var intRegex =/^\d+$/;
         var message = "";
        
-            if (ddlCategory.val() == "" || ddlCategory.val() == "---Select Category---") {
+            if (ddlCategory == "" || ddlCategory == "---Select Category---") {
                 //If the "Please Select" option is selected display error.
                 message = message+"Please Select Category.\n";
             }
          
-            if (ddlCategory == "Fruit" || ddlCategory == "Pestiside" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
+            if (ddlCategory == "Fruit" || ddlCategory == "Pesticide" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
 
                 if (jQuery("#txtSubCategoryName").val() == "") {
-                    message = message + "Please Enter  " + jQuery("#lblSubCategoryName") + ".\n";
+                    message = message + "Please Enter  " + jQuery("#lblSubCategoryName").html() + ".\n";
                 }
                 else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtSubCategoryName").val()) == false) {
-                    message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName") + ".\n";
+                    message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName").html() + ".\n";
                 }
                 else if (jQuery("#txtSubCategoryName").val().length > 25 || jQuery("#txtSubCategoryName").val().length < 3) {
-                    message = message + jQuery("#lblSubCategoryName").text() + " should Be Between 3 To 25 Characters.\n";
+                    message = message + jQuery("#lblSubCategoryName").html() + " should Be Between 3 To 25 Characters.\n";
                 }
 
             }
@@ -323,8 +322,14 @@
                                 <div class="col-md-3 col-sm-3 text-center py-2">
                                     <lable id="lblPrice">Price(₹)<span class="MandatoryStars">*</span> :</lable>
                                 </div>
-                                <div class="col-md-8 col-sm-8">
+                                @*<div class="col-md-4 col-sm-4">
                                     @Html.TextBox("txtPrice", null, new { @class = "form-control" })<label id="pricePerUnit"></label>
+                                </div>*@
+                                <div class="col-md-4 col-sm-4">
+                                    @Html.TextBox("txtPrice", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-4 pt-3">
+                                    <label id="pricePerUnit" style="font-family:inherit;font-size:14px;color:black"></label>
                                 </div>
                             </div>
                             <div class="row py-2">

@@ -110,9 +110,10 @@
     });
 
     function validation() {
+        debugger;
 
         var image = jQuery("#myImage").val();
-        var ddlCategory = jQuery("#ddlCategory");
+        var ddlCategory = jQuery("#ddlCategory option:selected").text();
         var ddlUnit = jQuery("#ddlUnit option:selected").text();
 
         var file = jQuery('input[type="file"]').val();
@@ -123,20 +124,20 @@
 
 
 
-        if (ddlCategory.val() == "" || ddlCategory.val() == "---Select Category---") {
+        if (ddlCategory == "" || ddlCategory == "---Select Category---") {
             message = message + "Please Select Category.<br />";
         }
 
         if (ddlCategory == "Fruit" || ddlCategory == "Pesticide" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
 
             if (jQuery("#txtSubCategoryName").val() == "") {
-                message = message + "Please Enter  " + jQuery("#lblSubCategoryName") + ".<br />";
+                message = message + "Please Enter  " + jQuery("#lblSubCategoryName").html() + ".<br />";
             }
             else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtSubCategoryName").val()) == false) {
-                message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName") + ".<br />";
+                message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName").html() + ".<br />";
             }
             else if (jQuery("#txtSubCategoryName").val().length > 25 || jQuery("#txtSubCategoryName").val().length < 3) {
-                message = message + jQuery("#lblSubCategoryName").text() + " should Be Between 3 To 25 Characters.<br />";
+                message = message + jQuery("#lblSubCategoryName").html() + " should Be Between 3 To 25 Characters.<br />";
             }
 
         }
@@ -210,6 +211,7 @@
 
 
     function fnAddPost() {
+        debugger;
         var UploadFile = jQuery("#myImage").get(0).files;
         var DataFile = new FormData();
         DataFile.append("ImageData", UploadFile[0]);
@@ -226,7 +228,7 @@
                 dataType: 'json',
                 data: form,
                 success: function (data) {
-                    if (data != null) {
+                    if (data != -99 & data != null) {
                         DataFile.append("AdId", data);
                         jQuery.ajax({
                             type: 'POST',

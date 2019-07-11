@@ -304,7 +304,7 @@
         obj.src=noimg;
     }
 </script>
-<div id="AdSearchResults">
+<div id="AdSearchResults" class="MinHight">
     <div class="container">
         <div class="row" style="padding-top:50px;">
             <div class="col-lg-1 col-sm-1">
@@ -312,6 +312,7 @@
             </div>
 
             <div class="col-lg-10 col-sm-10">
+
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
                         <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
@@ -342,7 +343,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="padding-bottom:30px;">
+                <div class="row" style="padding-bottom:30px;" id="divSort">
                     <div class="col-lg-8"></div>
                     <div class="col-lg-4">
                         <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
@@ -357,7 +358,7 @@
 
                 </div>
 
-                <div class="row" style="padding:30px">
+                <div class="row" style="padding:30px" id="divPaging">
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-3" style="text-align:left;color:blue" id="tdPreviousPage">
@@ -388,8 +389,8 @@
             </div>
         </div>
     </div>
-</div>
 
+</div>
 
 
 
