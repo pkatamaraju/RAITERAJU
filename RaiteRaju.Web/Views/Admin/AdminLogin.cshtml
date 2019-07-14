@@ -64,9 +64,32 @@
             });
         }
     }
+
+    jQuery(document).on("keypress", "#txtPassword", function (e) {
+        if (e.which == 13) {
+            fnLoginFunction();
+        }
+    });
+
+    function fnPasswordShow() {
+        var HideShowVal = jQuery("#PWHideShow").text();
+        if (HideShowVal == "Show") {
+            jQuery("#PWHideShow").text("Hide");
+        }
+        if (HideShowVal == "Hide") {
+            jQuery("#PWHideShow").text("Show");
+        }
+        var x = jQuery('#txtPassword').prop('type')
+        if (x == "password") {
+            jQuery('#txtPassword').attr("type", "text");
+        } else {
+            jQuery('#txtPassword').attr("type", "password");
+        }
+    }
+
 </script>
 
-<div id="divLogin">
+@*<div id="divLogin">
     <div><span><label></label></span></div>
     @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
     {
@@ -107,4 +130,56 @@
             </div>
         </div>
     }
+</div>*@
+
+
+<div id="divLogin">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h3 class="FormHeading">Login Here</h3>
+                <div class="form-box landing-form-box">
+                    @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
+                    {
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
+                                    <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group psw">
+                                    <label>Password<span class="MandatoryStars">*</span>:</label>
+                                    <input type="password" id="txtPassword" class="form-control" name="txtPassword" required="" data-required-message="Please enter Password" data-invalid-message="Password should contain min 8 Characters with at least 1 uppercase, 1 lowercase and 1 number">
+                                    <div class="pure-checkbox tog-check">
+                                        <span class="green-text" onclick="fnPasswordShow()" id="PWHideShow">Show</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="text-center padding-30">
+                                <a class="green-text">Forgot Password?</a>
+                            </div>*@
+                        <div class="cta-actions text-center">
+                            <button type="button" class="dflt-btn  inactive" title="LOGIN" onclick="fnLoginFunction()">LOGIN</button>
+                        </div>
+                    }
+
+                   
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
 </div>

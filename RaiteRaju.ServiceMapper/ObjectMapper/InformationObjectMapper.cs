@@ -67,6 +67,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     AdObj.AdID = item.AdID;
                     AdObj.txtAddTitle = item.Title;
                     AdObj.Category = item.Category;
+                    AdObj.intCategoryId = item.intCategoryId;
                     AdObj.txtSubCategoryName = item.txtSubCategoryName;
                     AdObj.txtAdDescription = item.AdDescription;
                     AdObj.txtPrice = item.Price;
@@ -85,24 +86,25 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
         }
         internal AdDetailsModel MapAdDetailsEntityToModel(AdDetailsEntity Entity)
       {
-          if (Entity != null)
-          {
-              AdDetailsModel MODEL = new AdDetailsModel();
-              MODEL.AdID = Entity.AdID;
-              MODEL.txtAddTitle = Entity.Title;
-              MODEL.txtAdDescription = Entity.AdDescription;
-              MODEL.Category = Entity.Category;
-              MODEL.txtSubCategoryName = Entity.txtSubCategoryName;
-              MODEL.txtPrice = Entity.Price;
-              MODEL.txtQuantity = Entity.Quantity;
-              MODEL.SellingUnit = Entity.SellingUnit;
-              MODEL.Image = Entity.Image;
-              return MODEL;
-          }
-          else
-          {
-              return null;
-          }
+            if (Entity != null)
+            {
+                AdDetailsModel MODEL = new AdDetailsModel();
+                MODEL.AdID = Entity.AdID;
+                MODEL.txtAddTitle = Entity.Title;
+                MODEL.txtAdDescription = Entity.AdDescription;
+                MODEL.Category = Entity.Category;
+                MODEL.intCategoryId = Entity.intCategoryId;
+                MODEL.txtSubCategoryName = Entity.txtSubCategoryName;
+                MODEL.txtPrice = Entity.Price;
+                MODEL.txtQuantity = Entity.Quantity;
+                MODEL.SellingUnit = Entity.SellingUnit;
+                MODEL.Image = Entity.Image;
+                return MODEL;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         internal DropDownWrapperModel MapDropDownwrapperEntityToModel(DropDrownWrapper Entity)
@@ -211,26 +213,26 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
 
         }
 
-        internal AdDetailsEntity MapAdDetailsModelToEntity(AdDetailsModel Model)
-        {
-            AdDetailsEntity Entity = new AdDetailsEntity();
+        //internal AdDetailsEntity MapAdDetailsModelToEntity(AdDetailsModel Model)
+        //{
+        //    AdDetailsEntity Entity = new AdDetailsEntity();
 
-            if (Model != null)
-            {
-                Entity.AdID = Model.AdID;
-                Entity.UserID = Model.UserID;
-                Entity.AdDescription = Model.txtAdDescription;
-                Entity.Category = Model.Category;
-                Entity.txtSubCategoryName = Model.txtSubCategoryName;
-                Entity.Image = Model.Image;
-                Entity.MobileNumber = Model.MobileNuber;
-                Entity.Price = Model.txtPrice;
-                Entity.Quantity = Model.txtQuantity;
-                Entity.SellingUnit = Model.SellingUnit;
-                Entity.Title = Model.txtAddTitle;
-            }
-            return Entity;
-        }
+        //    if (Model != null)
+        //    {
+        //        Entity.AdID = Model.AdID;
+        //        Entity.UserID = Model.UserID;
+        //        Entity.AdDescription = Model.txtAdDescription;
+        //        Entity.Category = Model.Category;
+        //        Entity.txtSubCategoryName = Model.txtSubCategoryName;
+        //        Entity.Image = Model.Image;
+        //        Entity.MobileNumber = Model.MobileNuber;
+        //        Entity.Price = Model.txtPrice;
+        //        Entity.Quantity = Model.txtQuantity;
+        //        Entity.SellingUnit = Model.SellingUnit;
+        //        Entity.Title = Model.txtAddTitle;
+        //    }
+        //    return Entity;
+        //}
         internal List<AdDetailsModel> MapAdDetailsListEntityToAdDetailsModel(List<AdDetailsEntity> listObj)
         {
 
@@ -274,6 +276,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 AdObj.AdID = AdEntity.AdID;
                 AdObj.txtAddTitle = AdEntity.Title;
                 AdObj.Category = AdEntity.Category;
+                AdObj.intCategoryId = AdEntity.intCategoryId;
                 AdObj.txtSubCategoryName = AdEntity.txtSubCategoryName;
                 AdObj.txtAdDescription = AdEntity.AdDescription;
                 AdObj.txtPrice = AdEntity.Price;

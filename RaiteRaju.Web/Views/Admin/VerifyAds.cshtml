@@ -39,7 +39,7 @@
             var tblAdList=jQuery('#tblAdList');
             for(i=0;i<length;i++){
                 j=i+1;
-                tblAdList.append('<tr id="AdListRow"><td id="AdTitle" onclick="fnOpenAd('+AdList[i].AdID+')">'+AdList[i].AdID+'</td><td>'+AdList[i].Category+'</td><td>'+AdList[i].txtSubCategoryName+'</td><td>'+AdList[i].txtPrice+'</td><td>'+AdList[i].txtQuantity+" "+AdList[i].SellingUnit+'</td><td><img src="/PhotoManagement/Compressed/'+AdList[i].AdID+'.jpg" class="DisplayUserImageclass"/></td><td><input type="checkbox" value='+AdList[i].AdID+' class="SelectedAds" ></td><tr>')
+                tblAdList.append('<tr id="AdListRow"><td id="AdTitle" onclick="fnOpenAd(' + AdList[i].AdID + ')">' + AdList[i].AdID + '</td><td>' + AdList[i].Category + '</td><td>' + AdList[i].txtSubCategoryName + '</td><td>' + AdList[i].txtPrice + '</td><td>' + AdList[i].txtQuantity + " " + AdList[i].SellingUnit + '</td><td><img src="/PhotoManagement/Compressed/' + AdList[i].AdID + '.jpg" class="DisplayUserImageclass"/></td><td><input type="checkbox" value=' + AdList[i].AdID +' class="SelectedAds" ></td><td style="text-align:center;width:100px"></td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -210,74 +210,84 @@
 </script>
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
-@*<div>
-    <a href="/admin/AdminMain">Admin Page</a>
-</div>*@
-    <div id="Admin">
-     @*<div style="padding:10px 0px 10px 0px;background-color:#e0eaf1;border-radius:5px;font-family:Verdana,sans-serif">
-            <table id="tblFilter" style="padding-left:20px;">
-                <tr>
-                    <td><span class="FilterLabels">Select State</span><br />@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
-                    <td>
-                        <span class="FilterLabels">Select Distrinct</span><br /><select id="ddlDistrict" class="DropdownList" required>
-                            <option value="">---Select District---</option>
-                        </select>
-                    </td>
-                    <td>
-                        <span class="FilterLabels">Select Mandal/Taluka</span><br />
-                        <select id="ddlMandal" class="DropdownList" required>
-                            <option value="">---Select Mandal---</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="FilterLabels">Select Category</span><br />@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })
-                    </td>
-                    <td> </td>
-                    <td style="padding-left:50px;"><br /><input id="btnSearch" type="button" value="Search" onclick="fnAdSearch()" /></td>
-                </tr>
-            </table>
-        </div>*@
-        <br />
-        <br />
-    <div id="AdList">
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
 
-        <table id="tblAdList" style="border-collapse: collapse;">
-            <tr id="adlistHeader">
-                <th width="100px">AdID</th>
-                <th width="200px">Category</th>
-                <th width="200px">SubCategoryName</th>
-                <th width="200px">Price</th>
-                <th width="200px">Quantity</th>
-                <th width="100px"></th>
-                <th width="100px"><input type="checkbox" id="selectAll"></th>
-                <th width="200px"><input id="btnVerify" type="button" value="Verify Ads" onclick="fnVerifyAds()" /></th>
-            </tr>
-        </table>
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+
+            <div id="Admin">
+                @*<div style="padding:10px 0px 10px 0px;background-color:#e0eaf1;border-radius:5px;font-family:Verdana,sans-serif">
+                        <table id="tblFilter" style="padding-left:20px;">
+                            <tr>
+                                <td><span class="FilterLabels">Select State</span><br />@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
+                                <td>
+                                    <span class="FilterLabels">Select Distrinct</span><br /><select id="ddlDistrict" class="DropdownList" required>
+                                        <option value="">---Select District---</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                                    <select id="ddlMandal" class="DropdownList" required>
+                                        <option value="">---Select Mandal---</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="FilterLabels">Select Category</span><br />@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })
+                                </td>
+                                <td> </td>
+                                <td style="padding-left:50px;"><br /><input id="btnSearch" type="button" value="Search" onclick="fnAdSearch()" /></td>
+                            </tr>
+                        </table>
+                    </div>*@
+                <br />
+                <br />
+                <div id="AdList">
+
+                    <table id="tblAdList" style="border-collapse: collapse;text-align:center">
+                        <tr id="adlistHeader">
+                            <th width="100px">AdID</th>
+                            <th width="200px">Category</th>
+                            <th width="200px">SubCategoryName</th>
+                            <th width="200px">Price</th>
+                            <th width="200px">Quantity</th>
+                            <th width="100px"></th>
+                            <th width="100px"><input type="checkbox" id="selectAll"></th>
+                            <th width="200px"><input id="btnVerify" type="button" value="Verify Ads" onclick="fnVerifyAds()" /></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                <div class="col-lg-1 col-md-2 d-none d-md-block">
+                </div>
+                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-2 d-none d-md-block">
+                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                </div>
+                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                    <a id="PageNext" data-value="2" style="cursor:pointer">
+                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
 
-<div id="divPaging" style="padding-top:20px;margin-left:10%">
-    <table style="width:100%;">
-        <tr>
-            <td style="text-align:left;color:blue">
-                <a id="PreviousPage" data-value="1" style="cursor:pointer">
-                    <span> < Previous Page </span>
-                </a>
-            </td>
-            <td style="padding:0px 20px 0px 10px">
-                <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />&nbsp; @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
-            </td>
-            <td style="padding:0px 40px 0px 20px">
-                <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-            </td>
-
-            <td style="text-align:right;color:blue">
-                <a id="PageNext" data-value="2" style="cursor:pointer">
-                    <span> NextPage > </span>
-                </a>
-            </td>
-        </tr>
-    </table>
 </div>

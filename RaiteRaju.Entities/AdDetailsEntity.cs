@@ -19,6 +19,8 @@ namespace RaiteRaju.Entities
         [DataMember]
         public string Category { get; set; }
         [DataMember]
+        public Int32 intCategoryId { get; set; }
+        [DataMember]
         public string txtSubCategoryName { get; set; }
         [DataMember]
         public string AdDescription { get; set; }

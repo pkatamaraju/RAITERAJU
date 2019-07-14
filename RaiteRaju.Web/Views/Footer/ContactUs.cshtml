@@ -60,7 +60,7 @@
 
         var form = jQuery("#ContactUsForm").serialize();
 
-        if (fnValidation()) {
+        if (validation()) {
             jQuery.ajax({
                 type: 'POST',
                 url: '@Url.Action("ContactUs", "Footer")',

@@ -305,8 +305,6 @@ C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\RaiteRaju.Web.Models.p
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\Antlr3.Runtime.pdb
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\EntityFramework.xml
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\EntityFramework.SqlServer.xml
-C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\Newtonsoft.Json.xml
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\System.Net.Http.Formatting.xml
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\System.Web.Helpers.xml
@@ -330,3 +328,4 @@ C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\RaiteRaju.BusinessLaye
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\RaiteRaju.DAL.pdb
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\obj\Debug\RaiteRaju.Web.csproj.CoreCompileInputs.cache
 C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\obj\Debug\RaiteRaju.Web.csproj.CopyComplete
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Web\bin\Microsoft.Practices.ObjectBuilder.dll

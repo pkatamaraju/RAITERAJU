@@ -12,7 +12,7 @@
 
     var ExceptionList = null;
     jQuery(document).ready(function () {
-        
+
         ExceptionList=@(Html.Raw(Json.Encode(ViewBag.ExceptionList)));
         var length=Object.keys(ExceptionList).length;
 
@@ -31,15 +31,26 @@
     });
 
 </script>
-<div style="border:1px solid black">
-    <table id="tblExceptions" style="border-collapse: collapse;width:100%">
-        <tr id="adlistHeader">
-            <th width="50px">S.No</th>
-            <th width="100px">Controller Name</th>
-            <th width="100px">Action Name</th>
-            <th width="300px">Exception</th>
-            <th width="100px">LoggedDate</th>
-        </tr>
-    </table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <div style="border:1px solid black">
+                <table id="tblExceptions" style="border-collapse: collapse;width:100%;text-align:center">
+                    <tr id="adlistHeader">
+                        <th width="50px">S.No</th>
+                        <th width="100px">Controller Name</th>
+                        <th width="100px">Action Name</th>
+                        <th width="300px">Exception</th>
+                        <th width="100px">LoggedDate</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 

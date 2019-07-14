@@ -550,7 +550,7 @@
                                                         <label>Phone Number<span class="MandatoryStars">*</span>:</label>
                                                     </div>
                                                     <div class="col-md-8 col-sm-8">
-                                                        @Html.TextBox("txtPhoneNumber", (Int64)ViewBag.txtPhoneNumber, new { @class = "form-control", @placeholder = " Enter Your 10 digit PhoneNumber" })
+                                                        @Html.TextBox("txtPhoneNumber", (Int64)ViewBag.txtPhoneNumber, new { @class = "form-control", @placeholder = " Enter Your 10 digit PhoneNumber", @maxlength = "10" })
                                                     </div>
                                                 </div>
                                                 <div class="row">

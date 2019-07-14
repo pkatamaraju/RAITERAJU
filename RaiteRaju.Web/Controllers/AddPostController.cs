@@ -82,77 +82,116 @@ namespace RaiteRaju.Web.Controllers
         {
 
 
-            int success = 0;
+            int success = 0, OutInt;
+
             HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+
             HttpCookie KeyCookie = Request.Cookies["_RRPS"];
 
             if (UserIdCookie != null)
             {
-                    ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
-                    AdDetailsModel obj = new AdDetailsModel();
-                    obj.AdID = Convert.ToInt32(fnAd["AdId"]);
-                    obj.Category = fnAd["ddlCategoryText"];
-                    obj.txtSubCategoryName = fnAd["txtSubCategoryName"];
-                    obj.txtAdDescription = fnAd["txtAdDescription"];
+                String Errors = "";
+                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                AdDetailsModel obj = new AdDetailsModel();
+
+                obj.AdID = Convert.ToInt32(fnAd["AdId"]);
+
+                obj.Category = fnAd["ddlCategoryText"];
+
+                if (int.TryParse(fnAd["ddlCategoryID"], out OutInt))
+                {
+                    obj.intCategoryId = Int32.Parse(fnAd["ddlCategoryID"]);
+                }
+
+
+                obj.txtSubCategoryName = fnAd["txtSubCategoryName"];
+
+                obj.txtAdDescription = fnAd["txtAdDescription"];
+
+                if (int.TryParse(fnAd["txtPrice"], out OutInt))
+                {
                     obj.txtPrice = Convert.ToInt32(fnAd["txtPrice"]);
+                }
+
+                if (int.TryParse(fnAd["txtQuantity"], out OutInt))
+                {
                     obj.txtQuantity = Convert.ToInt32(fnAd["txtQuantity"]);
-                    obj.SellingUnit = fnAd["ddlUnitText"];
-                    HttpPostedFileBase file = Request.Files["myImage"];
+                }
 
-                    if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Seed" || obj.Category == "Fertilizer" || obj.Category == "Others")
-                    {
-                        obj.txtSubCategoryName = obj.txtSubCategoryName;
-                    }
-                    else
-                    {
-                        obj.txtSubCategoryName = obj.Category;
-                    }
+                obj.SellingUnit = fnAd["ddlUnitText"];
 
-                    string s = "[^<>'\"/`%-]";
-                    int count = 0;
+                HttpPostedFileBase file = Request.Files["myImage"];
+                HttpPostedFileBase file1 = Request.Files["ImageData"];
 
-                    if (System.Text.RegularExpressions.Regex.IsMatch(obj.Category, "^[a-zA-Z0-9 .]"))
-                    {
-                        count = count + 1;
-                    }
-                    if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s))
-                    {
-                        count = count + 1;
-                    }
-                    if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtAdDescription, s))
-                    {
-                        count = count + 1;
-                    }
-
-                    if (System.Text.RegularExpressions.Regex.IsMatch(obj.SellingUnit, "^[a-zA-Z0-9 .]"))
-                    {
-                        count = count + 1;
-                    }
-                    if (Regex.Match(obj.txtPrice.ToString(), "[1-9]").Success)
-                    {
-                        count = count + 1;
-                    }
-                    if (Regex.Match(obj.txtQuantity.ToString(), "[1-9]").Success)
-                    {
-                        count = count + 1;
-                    }
-
-                    if (count == 6)
-                    {
-                        ObjService.UpdateAdDetails(obj);
-                        success = obj.AdID;
-                        return Json(success, JsonRequestBehavior.AllowGet);
-                    }
-                    else
-                    {
-                        success = -99;
-                        return Json(success, JsonRequestBehavior.AllowGet);
-                    }
+                if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Seed" || obj.Category == "Fertilizer" || obj.Category == "Others")
+                {
+                    obj.txtSubCategoryName = obj.txtSubCategoryName;
                 }
                 else
                 {
-                    return RedirectToAction("Login", "User");
+                    obj.txtSubCategoryName = obj.Category;
                 }
+
+                string s = "[^<>'\"/`%-]";
+
+                //Validation
+
+                if (obj.Category == "" || obj.Category == "---Select Category---" || !System.Text.RegularExpressions.Regex.IsMatch(obj.Category, "^[a-zA-Z0-9 .]"))
+                {
+                    Errors = Errors + "Please select Category.\n";
+                }
+
+                if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Seed" || obj.Category == "Fertilizer" || obj.Category == "Others" || obj.Category == "Dairy Product")
+                {
+                    if (obj.txtSubCategoryName == "" || (!System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s)) || obj.txtSubCategoryName.Length < 3 || obj.txtSubCategoryName.Length > 25)
+                    {
+                        if (obj.Category == "Others") { Errors = Errors + "Please enter valid Product Name.\n"; }
+
+                        else { Errors = Errors + "Please enter valid " + obj.Category + " Name.\n"; }
+
+                    }
+                }
+
+                if (obj.txtAdDescription == "" || !System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s) || obj.txtAdDescription.Length > 200 || obj.txtAdDescription.Length < 4)
+                {
+                    Errors = Errors + "Please enter valid Ad Description.\n";
+                }
+
+                if (!Regex.Match(obj.txtQuantity.ToString(), "[1-9]").Success)
+                {
+                    Errors = Errors + "Please enter Valid Quantity. \n";
+                }
+
+                if (!Regex.Match(obj.txtPrice.ToString(), "[1-9]").Success)
+                {
+                    Errors = Errors + "Please enter valid Price.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(obj.SellingUnit, "^[a-zA-Z0-9 .]") || obj.SellingUnit == "" || obj.SellingUnit == "---Select Unit---")
+                {
+                    Errors = Errors + "Please select valid Selling Unit.\n";
+                }
+
+                
+
+                ViewBag.Error = Errors;
+
+                if (Errors == "")
+                {
+                    ObjService.UpdateAdDetails(obj);
+                    var result = new { ID = obj.AdID, Error = Errors };
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var result = new { ID = -99, Error = Errors };
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
 
         [HttpPost]
@@ -161,7 +200,6 @@ namespace RaiteRaju.Web.Controllers
             HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
             if (UserIdCookie != null)
             {
-
                 ManagementServiceWrapper obj = new ManagementServiceWrapper();
                 obj.DeleteUserAd(adId);
                 return Json(1, JsonRequestBehavior.AllowGet);
@@ -406,69 +444,111 @@ namespace RaiteRaju.Web.Controllers
         [HttpPost]
         public ActionResult AddPost(FormCollection fnPost)
         {
-            int AdId = 0;
+            int AdId = 0,OutInt;
             HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
             HttpCookie PhoneNumberCookie=Request.Cookies["_RRUPn"];
             Utility en = new Utility();
 
             if (UserIdCookie != null)
             {
+                string Errors = "";
+                string s = "[^<>'\"/`%-]";
+
                 ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
                 AdDetailsModel obj = new AdDetailsModel();
+
                 obj.Category = fnPost["ddlCategoryText"];
+
+                if (int.TryParse(fnPost["ddlCategoryID"], out OutInt))
+                {
+                    obj.intCategoryId = Int32.Parse(fnPost["ddlCategoryID"]);
+                }
+              
                 obj.txtSubCategoryName = fnPost["txtSubCategoryName"];
+
                 obj.txtAdDescription = fnPost["txtAdDescription"];
-                obj.txtPrice = Convert.ToInt32(fnPost["txtPrice"]);
-                obj.txtQuantity = Convert.ToInt32(fnPost["txtQuantity"]);
+
+                if (int.TryParse(fnPost["txtPrice"], out OutInt))
+                {
+                    obj.txtPrice = Int32.Parse(fnPost["txtPrice"]);
+                }
+
+                if (int.TryParse(fnPost["txtQuantity"], out OutInt))
+                {
+                    obj.txtQuantity = Int32.Parse(fnPost["txtQuantity"]);
+                }
+
                 obj.SellingUnit = fnPost["ddlUnitText"];
+
                 obj.UserID = Convert.ToInt32(en.Decrypt(UserIdCookie["_RRUID"]));
+
                 obj.MobileNuber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
-                if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Seed" || obj.Category == "Fertilizer" || obj.Category == "Others"|| obj.Category=="Dairy Product")
+
+                if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Seed" || obj.Category == "Fertilizer" || obj.Category == "Others" || obj.Category == "Dairy Product")
                 {
                     obj.txtSubCategoryName = obj.txtSubCategoryName;
+
                 }
                 else {
                     obj.txtSubCategoryName = obj.Category;
                 }
 
-                string s = "[^<>'\"/`%-]";
-                int count = 0;
 
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.Category, "^[a-zA-Z0-9 .]"))
+                //Validation
+
+                if (obj.Category == "" || obj.Category == "---Select Category---" || !System.Text.RegularExpressions.Regex.IsMatch(obj.Category, "^[a-zA-Z0-9 .]"))
                 {
-                    count = count + 1;
+                    Errors = Errors + "Please select Category.\n";
                 }
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s))
+
+                if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Seed" || obj.Category == "Fertilizer" || obj.Category == "Others" || obj.Category == "Dairy Product")
                 {
-                    count = count + 1;
+                    if (obj.txtSubCategoryName == "" || (!System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s)) || obj.txtSubCategoryName.Length < 3 || obj.txtSubCategoryName.Length > 25)
+                    {
+                        if (obj.Category == "Others") { Errors = Errors + "Please enter valid Product Name.\n"; }
+
+                        else { Errors = Errors + "Please enter valid " + obj.Category + " Name.\n"; }
+
+                    }
                 }
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtAdDescription, s))
+
+                if (obj.txtAdDescription == "" || !System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s) || obj.txtAdDescription.Length > 200 || obj.txtAdDescription.Length < 4)
                 {
-                    count = count + 1;
+                    Errors = Errors + "Please enter valid Ad Description.\n";
                 }
+
+                if (!Regex.Match(obj.txtQuantity.ToString(), "[1-9]").Success)
+                {
+                    Errors = Errors + "Please enter Valid Quantity. \n";
+                }
+
+                if (!Regex.Match(obj.txtPrice.ToString(), "[1-9]").Success)
+                {
+                    Errors = Errors + "Please enter valid Price.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(obj.SellingUnit, "^[a-zA-Z0-9 .]") || obj.SellingUnit=="" ||obj.SellingUnit== "---Select Unit---")
+                {
+                    Errors = Errors + "Please select valid Selling Unit.\n";
+                }
+
                 
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.SellingUnit, "^[a-zA-Z0-9 .]"))
-                {
-                    count = count + 1;
-                }
-                if (Regex.Match(obj.txtPrice.ToString(), "[1-9]").Success)
-                {
-                    count = count + 1;
-                }
-                if (Regex.Match(obj.txtQuantity.ToString(), "[1-9]").Success)
-                {
-                    count = count + 1;
-                }
 
-                if (count == 6)
+                ViewBag.Error = Errors;
+                HttpPostedFileBase file = Request.Files["ImageData"];
+
+                         
+                if (Errors == "")
                 {
                     AdId = ObjService.InsertAddPostDetails(obj);
-                    return Json(AdId, JsonRequestBehavior.AllowGet);
+                    var result = new { ID = AdId, Error = Errors };
+                    return Json(result, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    AdId = -1;
-                    return Json(AdId, JsonRequestBehavior.AllowGet);
+                    AdId = -99;
+                    var result = new { ID = AdId, Error = Errors };
+                    return Json(result, JsonRequestBehavior.AllowGet);
                 }
             }
             else

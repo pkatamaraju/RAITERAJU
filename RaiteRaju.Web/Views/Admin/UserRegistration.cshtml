@@ -215,79 +215,83 @@
 </script>
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
-<div id="divRegistration">
-    @using (Html.BeginForm("Registration", "User", FormMethod.Post, new { id = "UserRegistration" }))
-    {
-        <div>
-            <label id="ErrorMessage"></label>
-        </div>
-        <div class="Registration">
 
-            <table>
-                <tr>
-                    <td style="text-align:center;padding-bottom:20px;"><label>Register Here</label></td>
-                    <td></td>
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>Name<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">@Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Enter Your Name [max Lenth:50char]" })</td>
-                    @*<td>@Html.ValidationMessageFor(m => m.txtUserName, "", new { @class = "error" })</td>*@
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">@Html.TextBox("txtPhoneNumber", null, new { @class = "form-control", @placeholder = " Enter Your 10 digit PhoneNumber" })</td>
-                    @*<td>@Html.ValidationMessageFor(m => m.txtPhoneNumber, "", new { @class = "error" })</td>*@
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>Password<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">@Html.Password("txtPassword", null, new { @class = "password", @placeholder = " Password [max Lenth:20char]" })</td>
-                    @*<td>@Html.ValidationMessageFor(m => m.txtPassword, "", new { @class = "error" })</td>*@
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>State<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>District<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">
-                        <select id="ddlDistrict" class="DropdownList" required>
-                            <option value="">---Select District---</option>
-                        </select> @*@Html.DropDownList("ddlDistrict", new SelectList(Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList))), "Select Category", new { @class = "DropdownList" })*@
-                    </td>
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>Mandal<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">
-                        <select id="ddlMandal" class="DropdownList" required>
-                            <option value="">---Select Mandal---</option>
-                        </select>@*@Html.DropDownList("ddlMandal", new SelectList(Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList))), "Select Category", new { @class = "DropdownList" })*@
-                    </td>
-                </tr>
-                <tr class="tableRowRegistration">
-                    <td id="tdLeft"><label>Village<span class="MandatoryStars">*</span>:</label></td>
-                    <td id="tdright">@Html.TextBox("txtVillage", null, new { @class = "form-control", @placeholder = " Enter Villag Name [max Lenth:50char]" })</td>
-                    @*<td>@Html.ValidationMessageFor(m => m.txtVillage, "", new { @class = "error" })</td>*@
-                </tr>
-                @*<tr class="tableRowRegistration">
-                        <td id="tdLeft"><label>MailID:</label></td>
-                        <td id="tdright">@Html.TextBox("txtMailId", null, new { @class = "form-control", @placeholder = " Enter EmailId [max Lenth:50char]" })</td>
-                        <td>@Html.ValidationMessageFor(m => m.txtMailId, "", new { @class = "error" })</td>
-                    </tr>*@
-            </table>
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Registration", "User", FormMethod.Post, new { id = "UserRegistration" }))
+                {
+                    <h3 class="FormHeading">Enter your details to register with us</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Join Now</h3>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                    @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
+                                    <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
+                                    <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                    <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtPassword">Password<span class="MandatoryStars">*</span> :</label>
+                                    <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+                                    <span class="error-msg" id="ErrortxtPassword">Please enter Password</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="ddlState">State<span class="MandatoryStars">*</span> :</label>
+                                    @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control text-center", required = "required" })
+                                    <span class="error-msg" id="ErrorddlState">Please Select Your State</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="ddlDistrict">District<span class="MandatoryStars">*</span> :</label>
+                                    <select id="ddlDistrict" class="form-control text-center">
+                                        <option value="">---Select District---</option>
+                                    </select>
+                                    <span class="error-msg" id="ErrorddlState">Please Select Your District</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="ddlMandal">Mandal/Tehsil<span class="MandatoryStars">*</span> :</label>
+                                    <select id="ddlMandal" class="form-control text-center">
+                                        <option value="">---Select Mandal---</option>
+                                    </select>
+                                    <span class="error-msg" id="ErrorddlState">Please Select Your Mandal</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtVillage">Village/Area<span class="MandatoryStars">*</span> :</label>
+                                    <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
+                                    <span class="error-msg" id="ErrorddlState">Please enter Village/Area</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
+                                    <br>
+                                    <label style="font-size:10px;font-family:inherit">By creating account with RaiteRaju, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
-        <div>
-            <table class="tablebutton">
-                <tr>
-
-                    <td id="tdLeft"><input id="btnRegister" type="button" value="Register" class="clsbutton" onclick="fnRegistration()" /></td>
-                    <td id="tdright"><input id="btnCancel" type="button" value="Cancel" class="clsbutton" onclick="fnCancel()" /></td>
-                </tr>
-                <tr><td colspan="2" style="font-size:10px;font-family:Verdana,sans-serif">By creating account with RaiteRaju, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></tr>
-            </table>
-        </div>
-
-        <div id="diverror">
-            <label>@ViewBag.ErrorMessage</label>
-        </div>
-    }
+    </div>
 </div>
+

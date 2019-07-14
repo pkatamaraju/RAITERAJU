@@ -133,7 +133,7 @@
             var divAdListDisplay=jQuery("#divAdListDisplay");
             for(i=0;i<length;i++){
                 j=i+1;
-                divAdListDisplay.append('<div class="row" style="border:1px solid grey;margin-bottom:4px;" onclick="fnOpenAd('+AdList[i].AdID+')"><div class="col-lg-2"><img src="/PhotoManagement/Compressed/'+AdList[i].AdID+'.jpg" class="DisplayImageclass" onerror="this.onerror=null;callfun(this);"/></div><div class="col-lg-7" style="padding-left:35px"><div class="row" id="rowAdTitle">'+ AdList[i].txtSubCategoryName + " " + AdList[i].txtQuantity + " " + AdList[i].SellingUnit + " Available for Sale "+'</div><div class="row font12" id="AdCategory">Category: '+AdList[i].Category+'</div><div class="row font12"><img src="/Content/images/Location.png" style="width:20px;height: 18px;" />'+AdList[i].Location+'</div><div class="row font12">'+'Posted On:'+(AdList[i].PostedDate)+'</div></div><div class="col-lg-3"><div class="row" style="padding:15px; font-weight:bold;font-family:Verdana, Geneva, Tahoma, sans-serif">Rs.'+AdList[i].txtPrice+'<span style="font-size:14px;font-family:Verdana,sans-serif;">'+"/"+AdList[i].SellingUnit.slice(0, -1)+'</span>' +'</span></div><div class="row" style="Color:Green;padding-top:20px;font-weight:bold">✔ Phone Number Verified</div></div></div>');
+                divAdListDisplay.append('<div class="row" style="border:1px solid grey;margin-bottom:4px;cursor:pointer" onclick="fnOpenAd(' + AdList[i].AdID + ')"><div class="col-lg-2"><img src="/PhotoManagement/Compressed/' + AdList[i].AdID + '.jpg" class="DisplayImageclass" onerror="this.onerror=null;callfun(this);"/></div><div class="col-lg-7" style="padding-left:35px"><div class="row" id="rowAdTitle">' + AdList[i].txtSubCategoryName + " " + AdList[i].txtQuantity + " " + AdList[i].SellingUnit + " Available for Sale " + '</div><div class="row font12" id="AdCategory">Category: ' + AdList[i].Category + '</div><div class="row font12"><img src="/Content/images/Location.png" style="width:20px;height: 18px;" />' + AdList[i].Location + '</div><div class="row font12">' + 'Posted On:' + (AdList[i].PostedDate) + '</div></div><div class="col-lg-3"><div class="row" style="padding:15px; font-weight:bold;font-family:Verdana, Geneva, Tahoma, sans-serif">Rs.' + AdList[i].txtPrice + '<span style="font-size:14px;font-family:Verdana,sans-serif;">' + "/" + AdList[i].SellingUnit.slice(0, -1) + '</span>' +'</span></div><div class="row" style="Color:Green;padding:15px;font-size:14px">✔ Phone Number Verified</div></div></div>');
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -162,6 +162,7 @@
     });
 
     jQuery(function () {jQuery("#ddlState").change(function ()    {
+
         jQuery('#ddlDistrict').empty();
         jQuery("#ddlDistrict").html("");
         jQuery("#ddlDistrict").append
@@ -174,7 +175,16 @@
 
 
         fnAdSearch(1);   });  });
-    jQuery(function () {jQuery("#ddlDistrict").change(function () { fnAdSearch(1);   });  });
+    jQuery(function () {
+        jQuery("#ddlDistrict").change(function () {
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append(jQuery('<option></option>').val("").html("---Select Mandal---"));
+
+
+            fnAdSearch(1);
+        });
+    });
     jQuery(function () {jQuery("#ddlMandal").change(function ()   { fnAdSearch(1);   });  });
     jQuery(function () {jQuery("#ddlSort").change(function ()   { fnAdSearch(1);   });  });
 
@@ -191,6 +201,7 @@
     });
 
     function fnAdSearch(PageNumber) {
+        debugger;
         var stateVal = jQuery("#ddlState option:selected").text();
 
         if (stateVal == "---Select State---") {
@@ -343,7 +354,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="padding-bottom:30px;" id="divSort">
+                <div class="row" style="padding-bottom:30px;padding-top:30px;" id="divSort">
                     <div class="col-lg-8"></div>
                     <div class="col-lg-4">
                         <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
@@ -354,28 +365,28 @@
                     </div>
                 </div>
 
-                <div id="divAdListDisplay">
+                <div id="divAdListDisplay" style="margin-top:50px;">
 
                 </div>
 
-                <div class="row" style="padding:30px" id="divPaging">
-                    <div class="col-lg-1">
+                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                    <div class="col-lg-1 col-md-2 d-none d-md-block">
                     </div>
-                    <div class="col-lg-3" style="text-align:left;color:blue" id="tdPreviousPage">
+                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
                         <a id="PreviousPage" data-value="1" style="cursor:pointer">
                             <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
                         </a>
                     </div>
-                    <div class="col-lg-2 col-sm-6">
+                    <div class="col-lg-2 col-md-2 d-none d-md-block">
                         <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
                     </div>
-                    <div class="col-lg-1 col-sm-6" style="text-align:left">
+                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
                         @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-3 col-xs-3">
                         <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
                     </div>
-                    <div class="col-lg-2" style="text-align:right;color:blue" id="tdPageNext">
+                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
                         <a id="PageNext" data-value="2" style="cursor:pointer">
                             <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
                         </a>

@@ -81,14 +81,14 @@
         var message = "";
        
             if (ddlCategory == "" || ddlCategory == "---Select Category---") {
-                //If the "Please Select" option is selected display error.
+               
                 message = message+"Please Select Category.\n";
             }
          
             if (ddlCategory == "Fruit" || ddlCategory == "Pesticide" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
 
                 if (jQuery("#txtSubCategoryName").val() == "") {
-                    message = message + "Please Enter  " + jQuery("#lblSubCategoryName").html() + ".\n";
+                    message = message + "Please Enter " + jQuery("#lblSubCategoryName").html() + ".\n";
                 }
                 else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtSubCategoryName").val()) == false) {
                     message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName").html() + ".\n";
@@ -128,7 +128,7 @@
                 message = message + "Please Enter Valid Quantity(From 1 To 9 Digit Number).\n";
             }
             if (ddlUnit.val() == "" || ddlUnit.val() == "---Select Unit---") {
-                //If the "Please Select" option is selected display error.
+                
                 message = message + "Please Select Selling Unit.\n";
             }
             if (jQuery("#myImage").val() == "" || jQuery("#myImage").val() == null) {
@@ -212,11 +212,6 @@
         //});
 
         // var formdata = JSON.stringify($('#AddPostForm').serializeArray());
-        var UploadFile = jQuery("#myImage").get(0).files;
-
-        var DataFile = new FormData();
-        DataFile.append("ImageData", UploadFile[0]);
-
         
 
 
@@ -224,7 +219,8 @@
         //var file = jQuery("#myImage")[0].files[0];//jQuery('#myImage');
         var Category = jQuery("#ddlCategory option:selected").text();
         var Unit = jQuery("#ddlUnit option:selected").text();
-        form += "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit;
+        var CategoryId = jQuery("#ddlCategory option:selected").val();
+        form += "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit + "&ddlCategoryID=" + CategoryId;
         if (validation()) {
             jQuery('#btnSubmit').prop('disabled', true);
             jQuery('#DivAddPost').loadingIndicator();
@@ -234,8 +230,14 @@
                 dataType: 'json',
                 data: form,
                 success: function (data) {
-                    if (data != -1 && data!=null) {
-                        DataFile.append("AdId", data);
+                    if (data.ID != -99 && data.Error == "") {
+                        debugger;
+                        var UploadFile = jQuery("#myImage").get(0).files;
+                        var DataFile = new FormData();
+
+                        DataFile.append("ImageData", UploadFile[0]);
+                        DataFile.append("AdId", data.ID);
+
                         jQuery.ajax({
                             type: 'POST',
                             url: '@Url.Action("FileUpload", "AddPost")',
@@ -252,8 +254,9 @@
                             }
                         });
                     }
-                    if (data == -1) {
-                        alert("Please Enter Correct Data As Per Validation.");
+                    else {
+                        jQuery('#btnSubmit').removeAttr("disabled");
+                        alert(data.Error);
                     }
                 },
                 error: function (data) {

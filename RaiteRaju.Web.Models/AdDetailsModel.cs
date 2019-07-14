@@ -15,8 +15,9 @@ namespace RaiteRaju.Web.Models
        //[RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Use letters only")]
        public string txtAddTitle { get; set; }
        public string Category { get; set; }
+       public Int32 intCategoryId { get; set; }
        public string txtSubCategoryName { get; set; }
-
+    
        public string txtAdDescription { get; set; }
        //[Required(ErrorMessage = "Please enter price")]
        //[RegularExpression(@"^([0-9]{1-10})$", ErrorMessage = "Only number are allowed.")]

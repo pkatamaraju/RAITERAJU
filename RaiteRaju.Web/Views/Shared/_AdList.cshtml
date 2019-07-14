@@ -184,12 +184,14 @@
         @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
     </div>
     <div class="col-md-3 col-xs-3">
-        <a id=" pagenext" data-value="2" style="cursor:pointer">
+        
         <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-        </a>
+
     </div>
     <div class="col-md-2 col-xs-4" id="tdPageNext">
-        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+        <a id="PageNext" data-value="2" style="cursor:pointer">
+            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+        </a>
     </div>
 
 </div>

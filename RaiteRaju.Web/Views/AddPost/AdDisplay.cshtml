@@ -6,7 +6,8 @@
 <meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
 <meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
 <meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="robots" content="index,follow" /><script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<meta name="robots" content="index,follow" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
     $.noConflict();
     function fnViewPhoneNumber() {
@@ -17,83 +18,94 @@
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
 
-<div style="min-height:1000px;padding-top:35px;padding-left:65px; width:100%;align-content:center">
-    <div style="float: left;border:1px solid #eae2e2;border-radius:5px">
-        <table style="border-collapse:collapse;">
-            <tr>
-                <td colspan="2" id="AdDisplayAdTitle">
-                    @ViewBag.DefinedTitle
+        </div>
 
-                </td>
-                @*<td id="price" style="border-radius:5px;background-color:#00ff90;width:200px">
-                    Rs.@ViewBag.Price /-
-                </td>*@
-            </tr>
-            <tr><td style="padding-top:10px;padding-left:15px"><img src="~/Content/images/Location.png" style="width:20px;height: 18px;" /><span id="adDisplayAdLocation">@ViewBag.Location</span></td></tr>
-            <tr><td style="padding-bottom:20px;"><span id="adDisplayAdLocation" style="padding-left:32px">Ad Posted on:@ViewBag.AdPostedDate</span></td></tr>
-            @*<tr>
-            <td colspan="2" ></td><td style="padding-left:15px;height:50px;background-color:#b6ff00">@ViewBag.Name<br /> @ViewBag.MobileNumber</td>
-                    </tr>*@
-            <tr>
-                <td colspan="2" id="DisplayImage">
-                    <img src="/PhotoManagement/Actual/@ViewBag.AdId" style="max-width: 500px; max-height:500px;" />
-                </td>
-            </tr>
-            <tr>
+        <div class="col-md-10 col-sm-12">
+            <div class="row">
+                <div class="col-lg-8" style="border:1px solid #d4d3d3;border-radius:5px">
+                    <div class="row" style="padding:20px;">
+                        <div class="row" id="AdDisplayAdTitle">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> @ViewBag.DefinedTitle</div>
 
-                <td colspan="2" class="adDispalyCells">
-                    <table>
-                        <tr>
-                            <td><span class="AdDisplayAdCategory">Ad Category:</span><br /><span class="advalues">@ViewBag.Category</span></td>
-                            <td><span class="AdDisplayAdCategory">Selling Price:</span><br /><span class="advalues">Rs.@ViewBag.Price @ViewBag.DefinedUnit</span></td>
-                            <td><span class="AdDisplayAdCategory">Quantity:</span><br /><span class="advalues">@ViewBag.Quantity&nbsp;@ViewBag.Unit</span></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td class="adDispalyCells" style="max-width:475px"><label class="AdDisplayAdCategory">Description:</label><br /> <span class="advalues" style="word-break: break-all">@ViewBag.Description</span> </td>
-            </tr>
-            <tr>
-                <td class="adDispalyCells" style="max-width:475px"><label class="AdDisplayAdCategory">Ad Views: @ViewBag.AdViewCount</label></td>
-            </tr>
-            <tr>
-                <td class="adDispalyCells" style="max-width:475px"><label id="AdNote">While Contacting the seller Please mention that you found this Ad on Raiteraju.in website</label></td>
-            </tr>
-        </table>
-        @*<table>
-        <tr>
-            <td>
-                <span class="AdDisplayAdCategory">Ad Views:</span>
-            </td>
-        </tr>
-        </table>*@
-    </div>
-    <div style="float: left;">
-        <table>
-            <tr>
-                <td id="AdDisplayAdprice">
-                    Rs.@ViewBag.Price<span style="font-size:14px !important">@ViewBag.DefinedUnit</span>
-                </td>
-            </tr>
-            <tr>
-                <td id="adDisplayUserDetails" style="max-width:150px;">
-                    Name:<br />
-                   @ViewBag.Name<br />
-                    @*@ViewBag.MobileNumber<br /><a onclick="fnViewPhoneNumber()" style="text-decoration:none;color:blue;cursor:pointer;padding-left:30px">View Phone Number</a>*@
-                </td>
-            </tr>
-            <tr>
-                <td id="adDisplayUserDetails">
-                    @ViewBag.MobileNumber<br /><a onclick="fnViewPhoneNumber()" style="text-decoration:none;color:blue;cursor:pointer">Click Here to View Phone Number</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img id="PhoneNumberVerifiedImg" src="~/Content/images/Verified.jpg" />
-                </td>
-            </tr>
-        </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><img src="~/Content/images/Location.png" style="width:20px;height: 18px;" /><span class="adDisplayAdLocation">@ViewBag.Location</span></div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="adDisplayAdLocation">Ad Posted on:@ViewBag.AdPostedDate</span></div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" @*id="DisplayImage"*@ style="vertical-align:central;">
+                        
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <img src="/PhotoManagement/Actual/@ViewBag.AdId" @*style="max-width: 500px; max-height:500px;"*@ />
+                        </div>
+
+                    </div>
+                    <div class="row" style="border-top:1px solid #d4d3d3;border-bottom:1px solid #d4d3d3;border-radius:5px">
+
+
+                        <div class="col-lg-12">
+                            <label class="AdDisplayLabel">Details</label>
+                        </div>
+                      
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 AdDisplayAdCategory">Selling Price:</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Rs.@ViewBag.Price@ViewBag.DefinedUnit</div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 AdDisplayAdCategory">Ad Category:</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">@ViewBag.Category</div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 AdDisplayAdCategory">Quantity:</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">@ViewBag.Quantity&nbsp;@ViewBag.Unit</div>
+
+
+                    </div>
+
+                    <div class="row" style="min-height:200px;word-break:break-all">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                            <label class="AdDisplayLabel">Ad Description</label><br />
+                            @ViewBag.Description
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+
+                    <div class="row" id="AdDisplayAdprice">
+                        <div class="col-lg-12">
+                            Rs.@ViewBag.Price<span style="font-size:14px !important">@ViewBag.DefinedUnit</span>
+                        </div>
+                    </div>
+                    <div class="row adDisplayUserDetails">
+
+                        <div class="col-lg-12">
+                            <label class="AdDisplayLabel">Seller Details</label>
+                        </div>
+                        <div class="col-lg-12">
+                            @ViewBag.Name<br />
+
+                            @ViewBag.MobileNumber<br /><a onclick="fnViewPhoneNumber()" style="text-decoration:none;color:blue;cursor:pointer">Click Here to View Phone Number</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-1 col-sm-1">
+
+        </div>
     </div>
 </div>

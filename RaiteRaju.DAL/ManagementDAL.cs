@@ -25,7 +25,9 @@ namespace RaiteRaju.DAL
                {
                    //DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdTitle, DbType.String, Obj.Title);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
-                   DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTCATEGORYID, DbType.Int32, Obj.intCategoryId);
+
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.UserID);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand,DataAccessConstants.ParamSubCategoryName,DbType.String,Obj.txtSubCategoryName);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPrice, DbType.Int32, Obj.Price);
@@ -254,7 +256,9 @@ namespace RaiteRaju.DAL
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.String, Obj.AdID);
                   // DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdTitle, DbType.String, Obj.Title);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
-                   DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSubCategoryName, DbType.String, Obj.txtSubCategoryName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTCATEGORYID, DbType.Int32, Obj.intCategoryId);
+
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSubCategoryName, DbType.String, Obj.txtSubCategoryName);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPrice, DbType.String, Obj.Price);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamQuantity, DbType.String, Obj.Quantity);

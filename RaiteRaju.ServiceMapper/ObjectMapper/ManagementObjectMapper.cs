@@ -16,6 +16,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             Entity.AdID = Model.AdID;
             Entity.Title = Model.txtAddTitle;
             Entity.Category = Model.Category;
+            Entity.intCategoryId = Model.intCategoryId;
             Entity.txtSubCategoryName = Model.txtSubCategoryName;
             Entity.AdDescription = Model.txtAdDescription;
             Entity.Price = Model.txtPrice;

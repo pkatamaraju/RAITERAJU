@@ -110,7 +110,6 @@
     });
 
     function validation() {
-        debugger;
 
         var image = jQuery("#myImage").val();
         var ddlCategory = jQuery("#ddlCategory option:selected").text();
@@ -131,7 +130,7 @@
         if (ddlCategory == "Fruit" || ddlCategory == "Pesticide" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
 
             if (jQuery("#txtSubCategoryName").val() == "") {
-                message = message + "Please Enter  " + jQuery("#lblSubCategoryName").html() + ".<br />";
+                message = message + "Please Enter " + jQuery("#lblSubCategoryName").html() + ".<br />";
             }
             else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtSubCategoryName").val()) == false) {
                 message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName").html() + ".<br />";
@@ -211,15 +210,16 @@
 
 
     function fnAddPost() {
-        debugger;
+
         var UploadFile = jQuery("#myImage").get(0).files;
         var DataFile = new FormData();
         DataFile.append("ImageData", UploadFile[0]);
         var form = jQuery("#AdDetails").serialize();
         var AdId = '@ViewBag.AdID'
         var Category = jQuery("#ddlCategory option:selected").text();
+        var CategoryId = jQuery("#ddlCategory option:selected").val();
         var Unit = jQuery("#ddlUnit option:selected").text();
-        form += "&AdId=" + AdId + "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit;
+        form += "&AdId=" + AdId + "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit + "&ddlCategoryID=" + CategoryId;
         if (validation()) {
             jQuery('body').loadingIndicator();
             jQuery.ajax({
@@ -228,8 +228,9 @@
                 dataType: 'json',
                 data: form,
                 success: function (data) {
-                    if (data != -99 & data != null) {
-                        DataFile.append("AdId", data);
+                    if (data.ID != -99 && data.Error == "") {
+                        DataFile.append("AdId", data.ID);
+                        debugger;
                         jQuery.ajax({
                             type: 'POST',
                             url: '@Url.Action("FileUpload", "AddPost")',
@@ -245,8 +246,9 @@
                             }
                         });
                     }
-                    if (data == -99) {
-                        alert("Please Enter Correct Data As Per Validation.");
+                    else {
+                        jQuery('#btnSubmit').removeAttr("disabled");
+                        alert(data);
                     }
                 },
                 error: function (data) {
