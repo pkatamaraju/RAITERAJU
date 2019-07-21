@@ -206,10 +206,10 @@
             <div class="col-md-2 col-sm-2">
             </div>
             <div class="col-md-6 col-sm-6">
-                <h3 class="FormHeading">Login Here</h3>
+                <h3 class="FormHeading">Login or Register Here</h3>
                 <div class="form-box landing-form-box">
-                   @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
-                   {
+                    @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
+                    {<h3 class="form-heading text-center">Login Now</h3>
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
                             </div>
@@ -235,36 +235,36 @@
                             </div>
                         </div>
                         @*<div class="text-center padding-30">
-                            <a class="green-text">Forgot Password?</a>
-                        </div>*@
+                <a class="green-text">Forgot Password?</a>
+            </div>*@
                         <div class="cta-actions text-center">
                             <button type="button" class="dflt-btn  inactive" title="LOGIN" onclick="fnLoginFunction()">LOGIN</button>
                         </div>
-                   }
+                    }
 
-@using (Html.BeginForm("LoginWithOTP", "User", FormMethod.Post, new { id = "LoginWithOTPForm" }))
-    {
+                    @using (Html.BeginForm("LoginWithOTP", "User", FormMethod.Post, new { id = "LoginWithOTPForm" }))
+                    {
 
                         <p class="seperator-text">or</p>
                         <div class="cta-actions text-center">
                             <input id="btnForgotPassword" type="button" class="dflt-btn no-bg" value="Login With OTP" onclick="fnShowForgotPassword()" />
-                         </div>
-    <div id="divForgotPassword" class="py-5" style="display:none">
-        <div class="row">
-            <div class="col-md-3 col-sm-3">
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                    <label for="PhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
-                    <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="9999999999">
-                </div>
-            </div>
-        </div>
-        <div class="cta-actions text-center">
-            <button type="button" class="dflt-btn no-bg " onclick="fnSubmitForgetPassword()">Submit</button>
-        </div>
-    </div>
-    }
+                        </div>
+                        <div id="divForgotPassword" class="py-5" style="display:none">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="PhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
+                                        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="9999999999">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cta-actions text-center">
+                                <button type="button" class="dflt-btn no-bg " onclick="fnSubmitForgetPassword()">Submit</button>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="col-md-3 col-sm-3">

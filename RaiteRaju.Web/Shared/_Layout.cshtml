@@ -62,20 +62,26 @@
             <div class="row">
                 <div class="col-lg-1 col-md-1 hidden-sm">
                 </div>
-                <div class="col-lg-1 col-md-2 col-sm-3  col-xs-3 py-2">
+                <div class="col-lg-1 col-md-1 col-sm-3  col-xs-3 py-2">
                     <a href="/"><img id="logo" src="~/Content/images/logo.jpg" /></a>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div id="Title" class="py-4 pl-2">
-                        <h1> <a href="/">Raiteraju</a></h1>
+                <div class="col-lg-4 col-md-3 col-sm-9 col-xs-9">
+                    <div style="padding-left:10px; height:50px;">
+                        <span id="Title">Raite Raju</span><br />
+                        <span id="TagLine">Now selling is at farmer's finger tips</span>
                     </div>
+                    
+                    @*<div id="Title" class="py-4 pl-2">
+            <h1> <a href="/">Raiteraju <br /><span id="TagLine" >Now selling is at farmer's finger tips</span></a></h1>
+
+        </div>*@
 
                 </div>
-                <div class="col-lg-3 col-md-1 d-none d-md-block">
+                <div class="col-lg-1 col-md-1 d-none d-md-block">
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 pt-4 text-right">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 text-right">
                     @if (Request.Cookies["_RRUN"] == null)
-                    {<a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a>}
+                    {<a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1"><span class="fa fa-user"></span> My Account</a>}
 
                     @if (Request.Cookies["_RRUN"] != null)
                     {
@@ -89,9 +95,12 @@
                                 <a href="#" onclick="fnLogout()">Logout</a>
                             </div>
                         </div>
-                        <span class="arrow-down" style="vertical-align:auto;"></span>}
+                        <span class="arrow-down" style="vertical-align:auto;"></span>            }
+
+
+
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pt-4 ">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 ">
                     <a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
                 </div>
                 @*<a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
@@ -133,11 +142,11 @@
     </div>
     <div id="SubMenuBar">
         <div class="container">
-            <div class="row">
+            <div class="row nopadding">
                 <div class="col-lg-1 d-none d-md-block">
 
                 </div>
-                <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12">
+                <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
                     <nav>
                         <ul class="nav nav-pills">
                             <li id="tabHome"><a href="/" tabindex="-1">Home</a></li>
@@ -208,8 +217,9 @@
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
                             <li><a href="/Footer/AboutUs">About Us</a></li>
-                            <li><a href="/Footer/AboutUs">How it works</a></li>
-                            <li><a href="/">Privacy Policy</a></li>
+                            <li><a href="/User/Registration">Register</a></li>
+                            <li><a href="/Footer/TermsAndConditions">Privacy Policy</a></li>
+                            <li><a href="/Footer/HowToPostAd">How to Post Ad</a></li>
                             <li><a href="/"></a></li>
                         </ul>
                     </div>
@@ -217,38 +227,39 @@
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/">Browse Ads</a></li>
-                            <li><a href="/">Report An Issue</a></li>
-                            <li><a href="/">Be a Partner</a></li>
+                            
+                            <li><a href="/Footer/HowToRegister">How to Register</a></li>
+                            <li><a href="/Footer/ReportIssue">Report an Issue</a></li>
+                            
+                            <li><a href="/Footer/HowItWorks">How it works</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/">Browse Projects</a></li>
-                            <li><a href="/">Categories</a></li>
-                            <li><a href="/">Services</a></li>
-                            <li><a href="/">Jobs</a></li>
+                            <li><a href="/Footer/Reviews">Write a Review</a></li>
+                            <li><a href="/Footer/Promotions">Be a Partner</a></li>
+                            <li><a href="/Footer/Careers">Careers</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/">Contact Us</a></li>
-                            <li><a href="/">Terms and Conditions</a></li>
-                            <li><a href="/">Be a Partner</a></li>
+                            <li><a href="/Footer/ContactUs">Contact Us</a></li>
+                            <li><a href="/Footer/TermsAndConditions">Terms and Conditions</a></li>
+                            <li>@*<a href="/">Be a Partner</a>*@</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div style="min-height:100px;">
                         <ul class="nav nav-pills">
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon1.jpg" alt="" class="social_MediaIcons" /></a></li>
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon2.jpg" alt="" class="social_MediaIcons" /></a></li>
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon3.jpg" alt="" class="social_MediaIcons" /></a></li>
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon4.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://www.facebook.com/RaiteRaju-268146037354551/?modal=admin_todo_tour"><img src="~/Content/images/FooterIcon1.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://www.instagram.com/raiteraju/"><img src="~/Content/images/FooterIcon2.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://twitter.com/RaiteRaju"><img src="~/Content/images/FooterIcon3.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://plus.google.com/u/0/104022384172539536216"><img src="~/Content/images/FooterIcon4.jpg" alt="" class="social_MediaIcons" /></a></li>
                         </ul>
                     </div>
                 </div>

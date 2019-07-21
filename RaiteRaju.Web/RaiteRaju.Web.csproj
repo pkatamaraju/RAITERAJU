@@ -197,11 +197,12 @@
     <Content Include="Content\HelpImges\register4.png" />
     <Content Include="Content\HelpImges\register5.png" />
     <Content Include="Content\HelpImges\register6.png" />
-    <Content Include="Content\images\buffelo.jpg" />
+    <Content Include="Content\images\Buffalo.jpg" />
     <Content Include="Content\images\castor.jpg" />
     <Content Include="Content\images\CEO.jpg" />
     <Content Include="Content\images\DairyProducts.jpg" />
     <Content Include="Content\images\Equipment.jpg" />
+    <Content Include="Content\images\Fertilizers.jpg" />
     <Content Include="Content\images\Fish.jpg" />
     <Content Include="Content\images\FooterIcon4.jpg" />
     <Content Include="Content\images\Cotton.jpg" />
@@ -218,6 +219,7 @@
     <Content Include="Content\images\LoginIcon.png" />
     <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\maize.jpg" />
+    <Content Include="Content\images\Millets.jpg" />
     <Content Include="Content\images\NoImage.jpg" />
     <Content Include="Content\images\OX.jpg" />
     <Content Include="Content\images\Pesticide.jpg" />
