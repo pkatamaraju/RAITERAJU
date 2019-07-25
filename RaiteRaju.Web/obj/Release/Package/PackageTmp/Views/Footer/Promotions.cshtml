@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Promotions";
     Layout = "~/Shared/_Layout.cshtml";
 }
@@ -52,7 +51,7 @@
             return true;
         }
         else {
-            jQuery("#Message").html(message).css("color","Red");
+            jQuery("#Message").html(message).css("color", "Red");
             return false;
         }
     }
@@ -69,7 +68,7 @@
                 data: form,
                 success: function (result) {
                     if (result == 1) {
-                        jQuery("#Message").html("Thanks for your interest in us, We Will Get back to you ASAP.").css("color", "green");
+                        jQuery("#Message").html("Thanks for your interest in us, We will get back to you ASAP.").css("color", "green");
                         jQuery("#PromotionsForm")[0].reset();
                     }
                     else if (result == 0) {
@@ -87,59 +86,52 @@
     }
 </script>
 
-
-@using (Html.BeginForm("Promotions", "Footer", FormMethod.Post, new { id = "PromotionsForm" }))
-{
-
-    <div id="divPromotions">
-       
-        <table>
-            <tr>
-                <td style="padding-bottom:10px" colspan="2"><p style="font-size:16px;font-family:sans-serif,Verdana;padding-left:20px">You can promote your business here with us, so that you can reach maximum farmers and agriculture related consumers through our website. We are very happy to help you in promoting your business on our website.</p></td>
-
-            </tr>
-            <tr>
-                <td style="padding-bottom:10px" colspan="2"><p style="font-size:16px;font-family:sans-serif,Verdana;padding-left:20px">Please write us here.</p></td>
-
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div id="Message" style="padding-left:150px;padding-bottom:15px;">
+<div id="divContactUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Promotions", "Footer", FormMethod.Post, new { id = "PromotionsForm" }))
+                {
+                    <h3 class="FormHeading">Write here to promote your business with us</h3>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <p style="font-size:16px;font-family:inherit;">You can promote your business here with us, so that you can reach maximum farmers and agriculture related consumers through our website. We are very happy to help you in promoting your business on our website.</p>
+        </div>
+    </div>
+        <div class="form-box clearfix">
+            <h3 class="form-heading text-center">Write Now</h3>
+            <div id="Message" style="padding-left:20px">
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Name<span class="MandatoryStars">*</span>:</label>
+                        @Html.TextBox("txtName", null, new { @class = "form-control", @placeholder = " Name" })
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Name<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextBox("txtName", null, new { @class = "form-control", @placeholder = " Enter Name [max Lenth:50 char]", @style = "width: 405px;" })</td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextBox("txtPhoneNumber", null, new { @class = "form-control", @placeholder = " Please Enter Your Phone Number.", @style = "width: 405px;" })</td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Description<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin [max Lenth:200 char]" })</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="button" class="clsbutton" style="width:200px;float:left" value="Submit" onclick="fnContactUs()" /></td>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="txtPhoneNumber">Mobile<span class="MandatoryStars">*</span> :</label>
+                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label for="">Description<span class="MandatoryStars">*</span>:</label>
+                        @Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin" })
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="cta-actions">
+                        <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnContactUs()" />
+                    </div>
+                </div>
+            </div>
+        </div>}
 
-            </tr>
-        </table>
     </div>
-    <div>
-        <table style="padding-top:50px;padding-left:50px;">
-            <tr>
-                <td style="font-family:Verdana,sans-serif;font-size:18px">Your can also reach us at:</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>@*<img src="~/Content/images/CEO.jpg" style="height:100px;width:130px" />*@</td>
-                <td style="padding-bottom:20px;font-family:Verdana,sans-serif;font-size:16px">Katama Raju<br />Founder & CEO of RaiteRaju<br />CEO@raiteraju.in<br />9640059446 </td>
-            </tr>
-            
-        </table>
+        </div>
     </div>
-}
-
-
+</div>

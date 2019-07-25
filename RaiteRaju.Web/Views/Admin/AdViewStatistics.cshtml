@@ -31,13 +31,19 @@
         if(CurrentPageNumber==1){
             jQuery('a#PreviousPage').attr('disabled', true);
             jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
         }
         if(TotalPageCount==CurrentPageNumber){
+
             jQuery('a#PageNext').attr('disabled', true);
             jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
         }
         if(TotalPageCount==0){
             jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
         }
     });
     jQuery(document).ready(function() {
@@ -114,7 +120,7 @@
 
         </div>
         <div class="col-md-10 col-sm-12">
-            <div id="AdList">
+            <div id="AdList" class="table-responsive">
 
                 <table id="tblAdList" style="border-collapse: collapse;">
                     <tr id="adlistHeader">

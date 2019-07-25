@@ -9,7 +9,15 @@
     $.noConflict();
     jQuery().ready(function () {
         jQuery('#tabHowToRegister').addClass('active');
-    })
+    });
+    jQuery(document).ready(function () {
+        if (jQuery(window).width() < 500) {
+            jQuery("#DivHowToRegister img").css({ "width": "380", "height": "250" });
+        }
+        else {
+            jQuery("#DivHowToRegister img").css({ "width": "800px", "height": "450px" });
+        }
+    });
 </script>
 <div class="container">
     <div class="row">

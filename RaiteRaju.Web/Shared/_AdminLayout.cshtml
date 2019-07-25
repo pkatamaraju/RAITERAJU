@@ -69,13 +69,14 @@
                 <div class="col-lg-1 col-md-2 col-sm-3  col-xs-3 py-2">
                     <a href="/Admin/AdminMain"><img id="logo" src="~/Content/images/logo.jpg" /></a>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div id="Title" class="py-4 pl-2">
-                        <h1> <a href="/Admin/AdminMain">Raiteraju</a></h1>
+                <div class="col-lg-4 col-md-3 col-sm-9 col-xs-9">
+                    <div style="padding-left:10px; height:50px;">
+                        <span id="Title">Raite Raju</span><br />
+                        <span id="TagLine">Now selling is at farmer's finger tips</span>
                     </div>
-
                 </div>
-                <div class="col-lg-3 col-md-1 d-none d-md-block">
+
+                <div class="col-lg-1 col-md-1 d-none d-md-block">
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 pt-4 text-right">
                     @if (Request.Cookies["_RRAUN"] == null)
@@ -96,20 +97,20 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pt-4 ">
                     <a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
                 </div>
-                
+
             </div>
         </div>
     </div>
     <div id="SubMenuBar">
         <div class="container">
-            <div class="row">
+            <div class="row nopadding">
                 <div class="col-lg-1 d-none d-md-block">
 
                 </div>
-                <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12">
+                <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
                     <nav>
                         <ul class="nav nav-pills">
-                           
+
                             <li id="tabVerifyAds">
                                 <a href="/admin/VerifyAds?PageNumber=1" tabindex="-1">VerifyAds</a>
                             </li>
@@ -140,7 +141,7 @@
                         </ul>
                     </nav>
                 </div>
-              
+
             </div>
         </div>
 

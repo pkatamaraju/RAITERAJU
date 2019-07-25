@@ -27,15 +27,20 @@
                 tblUserList.append('<tr id="AdListRow"><td style="width:50px">'+UserList[i].intUserId+'</td><td style="text-align:center;width:100px">'+ UserList[i].txtUserName+'</td><td style="text-align:center;width:100px">'+UserList[i].txtPhoneNumber+'</td><td style="text-align:center;width:300px">'+UserList[i].ddlState+","+UserList[i].ddlDistrict+","+UserList[i].ddlMandal+","+UserList[i].txtVillage+'</td><td style="text-align:center;width:50px"><input type="checkbox" value='+UserList[i].txtPhoneNumber+' class="SelectedAds" ></td><td style="text-align:center;width:100px"></td><tr>')
             }
         }
-        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+       var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
         var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
         if(CurrentPageNumber==1){
             jQuery('a#PreviousPage').attr('disabled', true);
             jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
         }
         if(TotalPageCount==CurrentPageNumber){
+
             jQuery('a#PageNext').attr('disabled', true);
             jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
         }
         if(TotalPageCount==0){
             jQuery("#divPaging").hide();
@@ -162,7 +167,7 @@
         </div>
         <div class="col-md-10 col-sm-12">
 
-            <div id="AdList">
+            <div id="AdList" class="table-responsive">
 
                 <table id="tblUserList" style="border-collapse: collapse;text-align:center">
                     <tr id="adlistHeader">
@@ -174,7 +179,7 @@
                     <th width="200px">Mandal</th>
                     <th width="200px">Village</th>*@
                         <th width="50px"><input type="checkbox" id="selectAll"></th>
-                        <th width="200px"><input id="btnVerify" type="button" value="Verify" onclick="fnDeleteUserAccounts()" /></th>
+                        <th width="200px"><input id="btnVerify" type="button" value="Verify" onclick="fnDeleteUserAccounts()"  class="ghost-btn first last filled py-2"/></th>
                     </tr>
                     <tr><td style="align-items:center;width:50px"></td><td style="align-items:center;width:100px"></td><td style="align-items:center;width:200px"> </td><td style="align-items:center;width:300px"></td><td style="align-items:center;width:50px"></td><td style="align-items:center;width:100px"></td></tr>
 

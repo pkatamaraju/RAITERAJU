@@ -47,14 +47,20 @@
         if(CurrentPageNumber==1){
             jQuery('a#PreviousPage').attr('disabled', true);
             jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
         }
         if(TotalPageCount==CurrentPageNumber){
+
             jQuery('a#PageNext').attr('disabled', true);
             jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
         }
         if(TotalPageCount==0){
             jQuery("#divPaging").hide();
         }
+
     });
     jQuery().ready(function(){
         jQuery("#selectAll").change(function(){
@@ -220,33 +226,33 @@
 
             <div id="Admin">
                 @*<div style="padding:10px 0px 10px 0px;background-color:#e0eaf1;border-radius:5px;font-family:Verdana,sans-serif">
-                        <table id="tblFilter" style="padding-left:20px;">
-                            <tr>
-                                <td><span class="FilterLabels">Select State</span><br />@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
-                                <td>
-                                    <span class="FilterLabels">Select Distrinct</span><br /><select id="ddlDistrict" class="DropdownList" required>
-                                        <option value="">---Select District---</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <span class="FilterLabels">Select Mandal/Taluka</span><br />
-                                    <select id="ddlMandal" class="DropdownList" required>
-                                        <option value="">---Select Mandal---</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="FilterLabels">Select Category</span><br />@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })
-                                </td>
-                                <td> </td>
-                                <td style="padding-left:50px;"><br /><input id="btnSearch" type="button" value="Search" onclick="fnAdSearch()" /></td>
-                            </tr>
-                        </table>
-                    </div>*@
+                <table id="tblFilter" style="padding-left:20px;">
+                    <tr>
+                        <td><span class="FilterLabels">Select State</span><br />@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
+                        <td>
+                            <span class="FilterLabels">Select Distrinct</span><br /><select id="ddlDistrict" class="DropdownList" required>
+                                <option value="">---Select District---</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                            <select id="ddlMandal" class="DropdownList" required>
+                                <option value="">---Select Mandal---</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="FilterLabels">Select Category</span><br />@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })
+                        </td>
+                        <td> </td>
+                        <td style="padding-left:50px;"><br /><input id="btnSearch" type="button" value="Search" onclick="fnAdSearch()" /></td>
+                    </tr>
+                </table>
+            </div>*@
                 <br />
                 <br />
-                <div id="AdList">
+                <div id="AdList" class="table-responsive">
 
                     <table id="tblAdList" style="border-collapse: collapse;text-align:center">
                         <tr id="adlistHeader">
@@ -257,7 +263,7 @@
                             <th width="200px">Quantity</th>
                             <th width="100px"></th>
                             <th width="100px"><input type="checkbox" id="selectAll"></th>
-                            <th width="200px"><input id="btnVerify" type="button" value="Verify Ads" onclick="fnVerifyAds()" /></th>
+                            <th width="200px"><input id="btnVerify" type="button" value="Verify Ads" onclick="fnVerifyAds()" class="ghost-btn first last filled py-2" /></th>
                         </tr>
                     </table>
                 </div>

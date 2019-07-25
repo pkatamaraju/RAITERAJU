@@ -7,7 +7,10 @@
 <meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
 <meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
 <meta name="robots" content="index,follow" />
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
 <script type="text/javascript">
     $.noConflict();
     function fnCancel() {
@@ -40,6 +43,7 @@
             success: function (data) {
                 
                 if (data!="") {
+                    jQuery('body').loadingIndicator();
                     window.location.href = '@Url.Action("UserAccount", "User")';
                 }
                 else{
@@ -59,25 +63,33 @@
 
 
 @using (Html.BeginForm("Verification", "User", FormMethod.Post, new { id = "VerificationForm" }))
-{ 
-    <div id="divOTPVerification">
-        
-        <table>
-            <tr><td><label>@ViewBag.ErrorMessage</label>  </td></tr>
-            <tr><td><label>Please Enter OTP that you received on Registered Mobile</label></td></tr>
-            <tr><td>@Html.TextBox("txtOTP", null, new { @class = "_ROTP_" })</td><td></td></tr>
-            <tr><td></td></tr>
-        </table>
-        
-            <table class="tablebutton">
-                <tr>
-                    <td id="tdLeft"><input type="button" value="Submit" class="clsbutton" onclick="fnVerifyOTP()" /></td>
-                    <td id="tdright"><input type="button" value="Cancel" class="clsbutton" onclick="fnCancel()" /></td>
-                </tr>
-            </table>
+{
 
-    </div>
-    
-}
+    <div id="divOTPVerification">
+        <div class="container">
+            <div class="form-box landing-form-box">
+                <div class="row">
+                    <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="form-group">
+                                <label>Please Enter OTP that you received on Registered Mobile</label>
+                                @Html.TextBox("txtOTP", null, new { @class = "_ROTP_" })
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-9 col-sm-12 text-center">
+                        <div class="cta-actions">
+                            <input type="button" value="Submit" class="dflt-btn inactive" onclick="fnVerifyOTP()" />
+                            <input type="button" value="Cancel" class="dflt-btn inactive" onclick="fnCancel()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>            }
 
 

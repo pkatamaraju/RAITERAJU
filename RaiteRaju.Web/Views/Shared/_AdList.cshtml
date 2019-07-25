@@ -14,7 +14,7 @@
 
         if(length==0)
         {
-            jQuery('#tblAdList').html('<tr  id="AdListRow"><td style="padding:50px;padding-left:220px;font-size:16px""><a href="/AddPost/AddPost" class="dflt-btn inactive">Post your Ad</a> Now You Can Post Free Ads.</tr><td></td></td>');
+            jQuery('#tblAdList').html('<tr><td class="text-center" style="align-items:center;height:200px;">Now You Can Post Free Ads.<a href="/AddPost/AddPost" class="dflt-btn inactive">Post your Ad</a> </tr><td></td></td>');
         }
         else
         {
@@ -27,18 +27,22 @@
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
         var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
-        if(TotalPageCount==0){
-            jQuery("#divPaging").hide();
-        }
         if(CurrentPageNumber==1){
             jQuery('a#PreviousPage').attr('disabled', true);
             jQuery('a#PreviousPage').css("cursor","default");
             jQuery('#tdPreviousPage').css("color","Grey");
+
         }
         if(TotalPageCount==CurrentPageNumber){
+
             jQuery('a#PageNext').attr('disabled', true);
             jQuery('a#PageNext').css("cursor","default");
             jQuery('#tdPageNext').css("color","Grey");
+
+        }
+        if(TotalPageCount==0){
+            jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
         }
 
     });
@@ -156,8 +160,8 @@
             </div>
         </div>*@
     <div class="table-responsive">
-        <table id="tblAdList" style="border-collapse: collapse;">
-            <tr style="background-color:#6c5656;height:40px;border-collapse:collapse;color:white;font-weight:bold;font-size:13px">
+        <table id="tblAdList" style="border-collapse: collapse;width:100%">
+            <tr class="tblHeader">
                 <th width="50px">S.No</th>
                 <th width="200px">Category</th>
                 <th width="200px">Price</th>
@@ -167,32 +171,30 @@
                 <th width="200px">Photo</th>
             </tr>
         </table>
-</div>
-</div>
-<div class="row" style="padding-top:20px">
-    <div class="col-md-2 d-none d-md-block">
     </div>
-    <div class="col-md-2 col-xs-5" id="tdPreviousPage">
+</div>
+
+<div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+    <div class="col-lg-1 col-md-2 d-none d-md-block">
+    </div>
+    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
         <a id="PreviousPage" data-value="1" style="cursor:pointer">
             <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
         </a>
     </div>
-    <div class="col-md-2 d-none d-md-block">
+    <div class="col-lg-2 col-md-2 d-none d-md-block">
         <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
     </div>
-    <div class="col-md-1 d-none d-md-block text-left">
+    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
         @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
     </div>
-    <div class="col-md-3 col-xs-3">
-        
+    <div class="col-lg-3 col-md-3 col-xs-3">
         <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-
     </div>
-    <div class="col-md-2 col-xs-4" id="tdPageNext">
+    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
         <a id="PageNext" data-value="2" style="cursor:pointer">
             <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
         </a>
     </div>
-
 </div>
 

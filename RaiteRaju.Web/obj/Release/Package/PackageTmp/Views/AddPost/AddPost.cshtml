@@ -4,8 +4,8 @@
 }
 <title> Raiteraju</title>
 <meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="description" content="You can sell or buy anything related to Agriculture. Like Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+<meta name="keywords" content="you can sell Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
 <meta name="robots" content="index,follow" />
 <style>
     #AddPostForm{
@@ -69,9 +69,8 @@
     }
 
     function validation() {
-
         var image = jQuery("#myImage").val();
-        var ddlCategory = jQuery("#ddlCategory");
+        var ddlCategory = jQuery("#ddlCategory option:selected").text();
         var ddlUnit = jQuery("#ddlUnit");
 
         var file = jQuery('input[type="file"]').val();
@@ -81,21 +80,21 @@
         var intRegex =/^\d+$/;
         var message = "";
        
-            if (ddlCategory.val() == "" || ddlCategory.val() == "---Select Category---") {
-                //If the "Please Select" option is selected display error.
+            if (ddlCategory == "" || ddlCategory == "---Select Category---") {
+               
                 message = message+"Please Select Category.\n";
             }
          
-            if (ddlCategory == "Fruit" || ddlCategory == "Pestiside" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
+            if (ddlCategory == "Fruit" || ddlCategory == "Pesticide" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
 
                 if (jQuery("#txtSubCategoryName").val() == "") {
-                    message = message + "Please Enter  " + jQuery("#lblSubCategoryName") + ".\n";
+                    message = message + "Please Enter " + jQuery("#lblSubCategoryName").html() + ".\n";
                 }
                 else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtSubCategoryName").val()) == false) {
-                    message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName") + ".\n";
+                    message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName").html() + ".\n";
                 }
                 else if (jQuery("#txtSubCategoryName").val().length > 25 || jQuery("#txtSubCategoryName").val().length < 3) {
-                    message = message + jQuery("#lblSubCategoryName").text() + " should Be Between 3 To 25 Characters.\n";
+                    message = message + jQuery("#lblSubCategoryName").html() + " should Be Between 3 To 25 Characters.\n";
                 }
 
             }
@@ -129,7 +128,7 @@
                 message = message + "Please Enter Valid Quantity(From 1 To 9 Digit Number).\n";
             }
             if (ddlUnit.val() == "" || ddlUnit.val() == "---Select Unit---") {
-                //If the "Please Select" option is selected display error.
+                
                 message = message + "Please Select Selling Unit.\n";
             }
             if (jQuery("#myImage").val() == "" || jQuery("#myImage").val() == null) {
@@ -213,11 +212,6 @@
         //});
 
         // var formdata = JSON.stringify($('#AddPostForm').serializeArray());
-        var UploadFile = jQuery("#myImage").get(0).files;
-
-        var DataFile = new FormData();
-        DataFile.append("ImageData", UploadFile[0]);
-
         
 
 
@@ -225,7 +219,8 @@
         //var file = jQuery("#myImage")[0].files[0];//jQuery('#myImage');
         var Category = jQuery("#ddlCategory option:selected").text();
         var Unit = jQuery("#ddlUnit option:selected").text();
-        form += "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit;
+        var CategoryId = jQuery("#ddlCategory option:selected").val();
+        form += "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit + "&ddlCategoryID=" + CategoryId;
         if (validation()) {
             jQuery('#btnSubmit').prop('disabled', true);
             jQuery('#DivAddPost').loadingIndicator();
@@ -235,8 +230,14 @@
                 dataType: 'json',
                 data: form,
                 success: function (data) {
-                    if (data != -1 && data!=null) {
-                        DataFile.append("AdId", data);
+                    if (data.ID != -99 && data.Error == "") {
+                        debugger;
+                        var UploadFile = jQuery("#myImage").get(0).files;
+                        var DataFile = new FormData();
+
+                        DataFile.append("ImageData", UploadFile[0]);
+                        DataFile.append("AdId", data.ID);
+
                         jQuery.ajax({
                             type: 'POST',
                             url: '@Url.Action("FileUpload", "AddPost")',
@@ -253,8 +254,9 @@
                             }
                         });
                     }
-                    if (data == -1) {
-                        alert("Please Enter Correct Data As Per Validation.");
+                    else {
+                        jQuery('#btnSubmit').removeAttr("disabled");
+                        alert(data.Error);
                     }
                 },
                 error: function (data) {
@@ -264,79 +266,96 @@
         }
     }
 </script>
-
 @using (Html.BeginForm("AddPost", "AddPost", FormMethod.Post, new { id = "AddPostForm" }))
-    {
-<div id="DivAddPost">
-    <div>
-        <table>
-            <tr class="tableRowAddPost"><td colspan="2" id="AddPostHeader">Post free Ad here</td></tr>
-            @*<tr class="tableRowAddPost">
-                <td id="tdLeft"><lable>Ad Title</lable><span class="MandatoryStars">*</span></td>
-                <td id="tdright">@Html.TextBox("txtAddTitle", null, new { @class = "DropdownList" })</td>
-                <td>@Html.ValidationMessageFor(m => m.txtAddTitle, "", new { @class = "error" })</td>
-            </tr>*@
+{<div id="divAdPost">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
 
-            <tr class="tableRowAddPost">
-                <td id="tdLeft"><lable>Category</lable><span class="MandatoryStars">*</span></td>
-                <td id="tdright">
-                @*@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })*@
-                    <select id="ddlCategory" class="DropdownList" required>
-                        <option value="">---Select Category---</option>
-                    </select>
-                </td>
-        </tr>
-            <tr class="tableRowAddPost" id="trSubCategoryName">
+                </div>
+                <div class="col-md-8 pr-4">
+                    <h3 class="FormHeading">Post free Ad here</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Post Now</h3>
+                        <div class="form-group">
+                            <div class="row py-2">
+                                <div class="col-md-3 col-sm-3 text-center py-2">
+                                    <lable>Category<span class="MandatoryStars">*</span> :</lable>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <select id="ddlCategory" class="form-control" required>
+                                        <option value="">---Select Category---</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row py-2" id="trSubCategoryName">
+                                <div class="col-md-3 col-sm-3 text-center py-2">
+                                    <div class="divsubcategory">
+                                        <lable id="lblSubCategoryName"> </lable><span class="MandatoryStars">*</span> :
+                                    </div>
+                                </div>
 
-                <td id="tdLeft"><div class="divsubcategory"><lable id="lblSubCategoryName"></lable><span class="MandatoryStars">*</span></div></td>
-                <td id="tdright">
-                    <div class="divsubcategory"> @Html.TextBox("txtSubCategoryName", null, new { @class = "DropdownList" })</div>
-                </td>
-            </tr>
-        <tr class="tableRowAddPost">
-            <td id="tdLeft"><lable>Ad Description</lable><span class="MandatoryStars">*</span></td>
-            <td id="tdright">@Html.TextArea("txtAdDescription", null, new { @class = "form-control" })</td>
-            <td></td>
-        </tr>
-       
-        <tr class="tableRowAddPost">
-            <td id="tdLeft"><lable>Quantity</lable><span class="MandatoryStars">*</span></td>
-            <td id="tdright">
-                @Html.TextBox("txtQuantity", null, new { @class = "form-control" })
-                @Html.DropDownList("ddlUnit", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.ddlUnits)).Cast<RaiteRaju.ApplicationUtility.ddlUnits>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Unit---", new { @class = "DropdownList", required = "required" })
-            </td>
-            <td></td>
-        </tr>
-            <tr class="tableRowAddPost">
-                <td id="tdLeft"><lable id="lblPrice">Price(₹)</lable><span class="MandatoryStars">*</span></td>
-                <td id="tdright">@Html.TextBox("txtPrice", null, new { @class = "form-control" })<label id="pricePerUnit"></label></td>
-                <td></td>
-            </tr>
-        <tr class="tableRowAddPost">
-            <td id="tdLeft"><lable>Upload Photos</lable><span class="MandatoryStars">*</span></td>
-            <td><input type="file" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" /></td>
-        </tr>
-        <tr class="tableRowAddPost"><td id="tdLeft"></td><td></td></tr>
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="divsubcategory">
+                                        @Html.TextBox("txtSubCategoryName", null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-md-3 col-sm-3 text-center">
+                                    <lable>Ad Description<span class="MandatoryStars">*</span> :</lable>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    @Html.TextArea("txtAdDescription", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-md-3 col-sm-3 text-center py-2">
+                                    <lable>Quantity<span class="MandatoryStars">*</span> :</lable>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    @Html.TextBox("txtQuantity", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    @Html.DropDownList("ddlUnit", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.ddlUnits)).Cast<RaiteRaju.ApplicationUtility.ddlUnits>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Unit---", new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-md-3 col-sm-3 text-center py-2">
+                                    <lable id="lblPrice">Price(₹)<span class="MandatoryStars">*</span> :</lable>
+                                </div>
+                                @*<div class="col-md-4 col-sm-4">
+                                    @Html.TextBox("txtPrice", null, new { @class = "form-control" })<label id="pricePerUnit"></label>
+                                </div>*@
+                                <div class="col-md-4 col-sm-4">
+                                    @Html.TextBox("txtPrice", null, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-4 pt-3">
+                                    <label id="pricePerUnit" style="font-family:inherit;font-size:14px;color:black"></label>
+                                </div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-md-3 col-sm-3 text-center py-2">
+                                    <lable>Upload Photo</lable><span class="MandatoryStars">*</span>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <input type="file" style="border:1px solid grey;border-radius:5px;" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 text-center">
+                                    <div class="cta-actions">
+                                        <input id="btnSubmit" class="dflt-btn inactive" type="button" value="Submit" onclick="fnAddPost()" />
+                                        <input id="btnCancel" class="dflt-btn inactive" type="button" value="Cancel" onclick="fnCancel()" />
 
-    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <table class="tablebutton">
-            <tr>
-
-                <td id="tdLeft"><input id="btnSubmit" class="clsbutton" type="button" value="Submit" onclick="fnAddPost()" /></td>
-                <td id="tdright"><input id="btnCancel" class="clsbutton" type="button" value="Cancel" onclick="fnCancel()" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            @*<tr>
-                    <td id="tdLeft"><a href="#" onclick="fnShowForgetPassword()">Forget Password?</a></td>
-                    <td id="tdright"><a href="/RaiteRaju/User/Registration">Register</a></td>
-                </tr>*@
-        </table>
-    </div>
-</div>
 }

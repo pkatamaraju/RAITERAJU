@@ -227,59 +227,95 @@
                     <div class="form-box clearfix">
                         <h3 class="form-heading text-center">Join Now</h3>
                         <div class="row">
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
-                                    @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
-                                    <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
-                                    <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
-                                    <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="txtPassword">Password<span class="MandatoryStars">*</span> :</label>
-                                    <input type="password" class="form-control" id="txtPassword" name="txtPassword">
-                                    <span class="error-msg" id="ErrortxtPassword">Please enter Password</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtPassword">Password<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+                                        <span class="error-msg" id="ErrortxtPassword">Please enter Password</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="ddlState">State<span class="MandatoryStars">*</span> :</label>
-                                    @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control text-center", required = "required" })
-                                    <span class="error-msg" id="ErrorddlState">Please Select Your State</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="ddlState">State<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control text-center", required = "required" })
+                                        <span class="error-msg" id="ErrorddlState">Please Select Your State</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="ddlDistrict">District<span class="MandatoryStars">*</span> :</label>
-                                    <select id="ddlDistrict" class="form-control text-center">
-                                        <option value="">---Select District---</option>
-                                    </select>
-                                    <span class="error-msg" id="ErrorddlState">Please Select Your District</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="ddlDistrict">District<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlDistrict" class="form-control text-center">
+                                            <option value="">---Select District---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select Your District</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="ddlMandal">Mandal/Tehsil<span class="MandatoryStars">*</span> :</label>
-                                    <select id="ddlMandal" class="form-control text-center">
-                                        <option value="">---Select Mandal---</option>
-                                    </select>
-                                    <span class="error-msg" id="ErrorddlState">Please Select Your Mandal</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="ddlMandal">Mandal/Tehsil<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlMandal" class="form-control text-center">
+                                            <option value="">---Select Mandal---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select Your Mandal</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="txtVillage">Village/Area<span class="MandatoryStars">*</span> :</label>
-                                    <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
-                                    <span class="error-msg" id="ErrorddlState">Please enter Village/Area</span>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtVillage">Village/Area<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
+                                        <span class="error-msg" id="ErrorddlState">Please enter Village/Area</span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <div class="cta-actions">
                                     <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />

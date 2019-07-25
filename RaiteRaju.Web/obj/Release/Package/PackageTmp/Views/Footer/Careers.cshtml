@@ -1,20 +1,23 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Careers";
     Layout = "~/Shared/_Layout.cshtml";
 }
-<title> Raiteraju</title>
-<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="robots" content="index,follow" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+    jQuery().ready(function () {
+        jQuery('#tabCareers').addClass('active');
+    });
+</script>
 
-
-<div>
-    <table style="font-family:Verdana,sans-serif;font-size:14px;padding-top:80px">
-        <tr><td><h2 style="align-content:center">Careers</h2></td></tr>
-        <tr><td> Thanks for showing interest in us. Please send your Resume to below mentioned mailId.<br /> Our Team will get in touch with you.</td></tr>
-        <tr><td>Careers@RaiteRaju.in</td></tr>
-    </table>
-</div>
+<div class="container" style="min-height:600px;">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h2 style="align-content:center;padding-top:50px" class="FormHeading text-left">Careers</h2>
+            <p class="font14">Thanks for showing interest in us. Please send your Resume to below mentioned mailId.<br /> Our Team will get in touch with you. careers@raiteraju.in</p>
+            </div>
+        </div>
+    </div>
+            
 

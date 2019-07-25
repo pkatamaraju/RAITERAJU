@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ContactUs";
     Layout = "~/Shared/_Layout.cshtml";
 }
@@ -17,7 +16,7 @@
         jQuery("#Message").html("");
         jQuery('#tabContactUs').addClass('active');
     });
-   
+
     function fnValidation() {
         var message = "";
         var phone = jQuery("#txtPhoneNumber").val(), intRegex = /^[5-9]{1}[0-9]{9}$/;
@@ -52,7 +51,7 @@
             return true;
         }
         else {
-            jQuery("#Message").html(message).css("color","Red");
+            jQuery("#Message").html(message).css("color", "Red");
             return false;
         }
     }
@@ -61,7 +60,7 @@
 
         var form = jQuery("#ContactUsForm").serialize();
 
-        if (fnValidation())
+        if (validation()) {
             jQuery.ajax({
                 type: 'POST',
                 url: '@Url.Action("ContactUs", "Footer")',
@@ -73,7 +72,7 @@
                         jQuery("#ContactUsForm")[0].reset();
                     }
                     else if (result == 0) {
-                        jQuery("#Message").html("Please Enter Data ad per validation").css("color", "Red");
+                        jQuery("#Message").html("Please Enter Data as per validation").css("color", "Red");
                     }
                     else {
                         alert("Some Error Occured. Please Try After Sometime.");
@@ -84,62 +83,61 @@
                     jQuery("#Message").html("Some Error Occured. Please Try After Sometime.");
                 }
             });
+        }
     }
 </script>
+<div id="divContactUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
+    @using (Html.BeginForm("ContactUs", "Footer", FormMethod.Post, new { id = "ContactUsForm" }))
+                {
 
-@using (Html.BeginForm("ContactUs", "Footer", FormMethod.Post, new { id = "ContactUsForm" }))
-{
-    
-    <div  id="divContactUs">
-        <div id="Message" style="padding-left:150px">
+        <h3 class="FormHeading">Write here to reach us</h3>
+                    <div class="form-box clearfix">
+                    <h3 class="form-heading text-center">Write Now</h3>
+                        <div id="Message" style="padding-left:20px">
+                        </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="txtPhoneNumber">Mobile<span class="MandatoryStars">*</span> :</label>
+                                <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                <label for="txtSubject">Subject<span class="MandatoryStars">*</span>:</label>
+                                @Html.TextBox("txtSubject", null, new { @class = "form-control", @placeholder = " Enter Subject" })
+                            </div>
+                        </div>
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                <label for="">Description<span class="MandatoryStars">*</span>:</label>
+                                @Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin"})
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <div class="cta-actions">
+                                <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnContactUs()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    }
+
+            </div>
         </div>
-        <table>
-            <tr>
-                <td style="padding-bottom:10px" colspan="2"><h4>Please write here to reach us.</h4></td>
-                
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextBox("txtPhoneNumber", null, new { @class = "form-control", @placeholder = " Please Enter Your Phone Number.", @style = "width: 405px;" })</td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Subject<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextBox("txtSubject", null, new { @class = "form-control", @placeholder = " Enter Subject [max Lenth:50 char]" })</td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Description<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin [max Lenth:200 char]" })</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="button" class="clsbutton" style="width:200px;float:left" value="Submit" onclick="fnContactUs()" /></td>
-
-            </tr>
-        </table>
+        <div class="row py-5">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <h2 class="FormHeading py-2" style="text-align:left">Your can also reach us at</h2>
+                <ul class="pl-4 font14" >
+                    <li class="py-2">Founder & CEO of RaiteRaju<br />CEO@raiteraju.in </li>
+                    <li class="py-2">Customer Care EmailID<br />support@raiteraju.in</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div>
-        <table style="padding-top:50px;padding-left:50px;">
-            <tr>
-                <td style="font-family:Verdana,sans-serif;font-size:18px">Your can also reach us at:</td>
-                <td></td>
-            </tr>
-            <tr>
-            <td>@*<img src="~/Content/images/CEO.jpg" style="height:100px;width:130px" />*@</td>
-            <td style="padding-bottom:20px;font-family:Verdana,sans-serif;font-size:16px">Katama Raju<br />Founder & CEO of RaiteRaju<br />CEO@raiteraju.in </td>
-        </tr>
-        <tr>
-            <td>@*<img src="~/Content/images/Suresh_MD.jpg" style="height:100px;width:130px" />*@</td>
-            <td style="padding-bottom:20px;font-family:Verdana,sans-serif;font-size:16px">Nandini<br />MD of RaiteRaju<br />support@raiteraju.in</td>
-        </tr>
-        <tr>
-            <td>@*<img src="~/Content/images/Suresh_MD.jpg" style="height:100px;width:130px" />*@</td>
-            <td style="padding-bottom:20px;font-family:Verdana,sans-serif;font-size:16px">Suresh<br />MD of RaiteRaju<br />support@raiteraju.in</td>
-        </tr>
-        <tr>
-            <td>@*<img src="~/Content/images/Suresh_MD.jpg" style="height:100px;width:130px" />*@</td>
-            <td style="padding-bottom:20px;font-family:Verdana,sans-serif;font-size:16px">Rama Rao<br />MD of RaiteRaju<br />Support@RaiteRaju.in</td>
-        </tr>
-        </table>
-    </div>
-}
+</div>

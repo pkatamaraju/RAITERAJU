@@ -9,7 +9,7 @@
 
     var ContactUSList = null;
     jQuery(document).ready(function () {
-        
+
         ContactUSList=@(Html.Raw(Json.Encode(ViewBag.ContactusList)));
         var length=Object.keys(ContactUSList).length;
 
@@ -32,17 +32,30 @@
         jQuery('#tabContactUsForAdmin').addClass('active');
     });
 </script>
-<h2>ContactUs</h2>
 
-<div style="border:1px solid black">
-    <table id="tblContactUS" style="border-collapse: collapse;">
-        <tr id="adlistHeader">
-            <th width="100px">S.No</th>
-            <th width="400px">Phone Number</th>
-            <th width="300px">Subject</th>
-            <th width="300px">Description</th>
-            <th width="300px">Date</th>
-        </tr>
-    </table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <h2>ContactUs</h2>
+
+            <div style="border:1px solid black;text-align:center" class="table-responsive">
+                <table id="tblContactUS" style="border-collapse: collapse;">
+                    <tr id="adlistHeader">
+                        <th width="100px">S.No</th>
+                        <th width="400px">Phone Number</th>
+                        <th width="300px">Subject</th>
+                        <th width="300px">Description</th>
+                        <th width="300px">Date</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
 

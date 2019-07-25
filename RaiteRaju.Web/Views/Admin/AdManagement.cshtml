@@ -31,18 +31,24 @@
                 tblAdList.append('<tr id="AdListRow"><td id="AdTitle" onclick="fnOpenAd('+AdList[i].AdID+')">'+AdList[i].AdID+'</td><td>'+AdList[i].Category+'</td><td>'+AdList[i].txtSubCategoryName+'</td><td>'+AdList[i].txtPrice+'</td><td>'+AdList[i].txtQuantity+" "+AdList[i].SellingUnit+'</td><td><img src="/PhotoManagement/Compressed/'+AdList[i].AdID+'.jpg" class="DisplayUserImageclass"/></td><td><input type="checkbox" value='+AdList[i].AdID+' class="SelectedAds" ></td><td onclick="fnUpdateAd('+AdList[i].AdID+')" style="curser:pointer;color:blue;cursor:pointer">'+"Edit"+'</td><tr>')
             }
         }
-        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+       var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
         var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
         if(CurrentPageNumber==1){
             jQuery('a#PreviousPage').attr('disabled', true);
             jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
         }
         if(TotalPageCount==CurrentPageNumber){
+
             jQuery('a#PageNext').attr('disabled', true);
             jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
         }
         if(TotalPageCount==0){
             jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
         }
     });
     jQuery().ready(function(){
@@ -253,7 +259,7 @@
             </div>*@
                 <br />
                 <br />
-                <div id="AdList">
+                <div id="AdList" class="table-responsive">
 
                     <table id="tblAdList" style="border-collapse: collapse;">
                         <tr id="adlistHeader">
@@ -264,7 +270,7 @@
                             <th width="200px">Quantity</th>
                             <th width="100px"></th>
                             <th width="50px"><input type="checkbox" id="selectAll"></th>
-                            <th width="200px"><input id="btnVerify" type="button" value="Delete Ads" onclick="fnDeleteAds()" /></th>
+                            <th width="200px"><input id="btnVerify" type="button" value="Delete Ads" onclick="fnDeleteAds()" class="ghost-btn first last filled py-2" /></th>
                         </tr>
                     </table>
                 </div>
