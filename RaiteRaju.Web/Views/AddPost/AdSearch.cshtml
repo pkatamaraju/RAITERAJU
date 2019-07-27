@@ -132,8 +132,8 @@
             var tblDisplay=jQuery('#tblDisplay');
             var divAdListDisplay=jQuery("#divAdListDisplay");
             for(i=0;i<length;i++){
-                j=i+1;
-                divAdListDisplay.append('<div class="row" style="border:1px solid grey;margin-bottom:4px;cursor:pointer" onclick="fnOpenAd(' + AdList[i].AdID + ')"><div class="col-lg-2"><img src="/PhotoManagement/Compressed/' + AdList[i].AdID + '.jpg" class="DisplayImageclass" onerror="this.onerror=null;callfun(this);"/></div><div class="col-lg-7" style="padding-left:35px"><div class="row" id="rowAdTitle">' + AdList[i].txtSubCategoryName + " " + AdList[i].txtQuantity + " " + AdList[i].SellingUnit + " Available for Sale " + '</div><div class="row font12" id="AdCategory">Category: ' + AdList[i].Category + '</div><div class="row font12"><img src="/Content/images/Location.png" style="width:20px;height: 18px;" />' + AdList[i].Location + '</div><div class="row font12">' + 'Posted On:' + (AdList[i].PostedDate) + '</div></div><div class="col-lg-3"><div class="row" style="padding:15px; font-weight:bold;font-family:Verdana, Geneva, Tahoma, sans-serif">Rs.' + AdList[i].txtPrice + '<span style="font-size:14px;font-family:Verdana,sans-serif;">' + "/" + AdList[i].SellingUnit.slice(0, -1) + '</span>' +'</span></div><div class="row" style="Color:Green;padding:15px;font-size:14px">✔ Phone Number Verified</div></div></div>');
+                j = i + 1;
+                divAdListDisplay.append('<div class="row" style="border:1px solid grey;margin-bottom:4px;cursor:pointer;" onclick="fnOpenAd(' + AdList[i].AdID + ')"><div class="col-lg-2"><img src="/PhotoManagement/Compressed/' + AdList[i].AdID + '.jpg" class="DisplayImageclass" onerror="this.onerror=null;callfun(this);"/></div><div class="col-lg-7 col-xs-12" style="padding-left:35px"><div class="row" id="rowAdTitle">' + AdList[i].txtSubCategoryName + " Available at Rs." + AdList[i].txtPrice + "/" + AdList[i].SellingUnit.slice(0, -1) + '</div><div class="row font12" id="AdCategory">Category: ' + AdList[i].Category + '</div><div class="row font12"><i class="fa fa-map-marker" aria-hidden="true" style="font-size:18px;color:red"></i> ' + AdList[i].Location + '</div><div class="row font12">' + 'Posted On:' + (AdList[i].PostedDate) + '</div></div><div class="col-lg-3 d-none d-md-block"><div class="row" style="padding:15px; font-weight:bold;font-family:Verdana, Geneva, Tahoma, sans-serif"><label><i class="fa fa-inr" aria-hidden="true"></i> ' + AdList[i].txtPrice + "/ " + AdList[i].SellingUnit.slice(0, -1) + '</label></div><div class="row"><label class="PhoneVerf"><i class="fa fa-phone" aria-hidden="true"></i> Phone Number Verified</label></div></div></div>');
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -317,7 +317,7 @@
 </script>
 <div id="AdSearchResults" class="MinHight">
     <div class="container">
-        <div class="row" style="padding-top:50px;">
+        <div class="row" style="padding-top:20px;">
             <div class="col-lg-1 col-sm-1">
 
             </div>
@@ -354,9 +354,9 @@
                     </div>
                 </div>
 
-                <div class="row" style="padding-bottom:30px;padding-top:30px;" id="divSort">
-                    <div class="col-lg-8"></div>
-                    <div class="col-lg-4">
+                <div class="row" style="padding-top:10px;" id="divSort">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-3">
                         <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
                             <option value="1" selected>Most Recent</option>
                             <option value="2">Price:Low-High</option>

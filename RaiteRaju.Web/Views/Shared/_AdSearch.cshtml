@@ -32,7 +32,7 @@
 
         if(length==0)
         {
-            jQuery('#tblDisplay').html('<tr><td style="padding-top:120px;padding-left:220px"">No Ads Found For Selected Category</tr></td>');
+            jQuery('#tblDisplay').html('<div class="row NoAdData"><div class="col-lg-12 col-sm-12 text-center">No Ads Found For Selected Category</div></div>');
 
         }
         else
@@ -40,7 +40,8 @@
             var tblDisplay=jQuery('#tblDisplay');
             for(i=0;i<length;i++){
                 j=i+1;
-                tblDisplay.append('<tr id="AdListRow"><td style="width:160px;cursor:pointer" onclick="fnOpenAd('+AdList[i].AdID+')" ><img src="/PhotoManagement/Compressed/'+AdList[i].AdID+'.jpg" class="DisplayImageclass"/></td><td><table id="tblDisplayMiddle" style="width:450px"><tr><td onclick="fnOpenAd('+AdList[i].AdID+')" id="AdTitle">'+AdList[i].Category + " " + AdList[i].txtQuantity + " " + AdList[i].SellingUnit + " at Price Rs." + AdList[i].txtPrice+"/"+AdList[i].SellingUnit.slice(0, -1) +'</td></tr><tr><td id="AdCategory"><label>'+AdList[i].Category+'</label></td></tr><tr><td id="AdLocation"><img src="/Content/images/Location.png" style="width:20px;" />'+AdList[i].Location+'</td></tr><tr><td id="posteddate">'+'Posted On:'+(AdList[i].PostedDate)+'</td></tr></table></td><td id="tblDisplayThirdColumn"><table><tr><td ><span id="price">Rs.'+AdList[i].txtPrice+'<span style="font-size:14px;font-family:Verdana,sans-serif;">'+"/"+AdList[i].SellingUnit.slice(0, -1)+'</span>' +'</span></td></tr><tr><td><img src="/Content/images/Verified.jpg" id="PhoneNumberVerifiedImg"/></td></tr></table></td></tr>')
+                tblDisplay.append('<div class="row" style="border:1px solid grey;margin-bottom:4px;cursor:pointer" onclick="fnOpenAd(' + AdList[i].AdID + ')"><div class="col-lg-2"><img src="/PhotoManagement/Compressed/' + AdList[i].AdID + '.jpg" class="DisplayImageclass" onerror="this.onerror=null;callfun(this);"/></div><div class="col-lg-7 col-xs-9" style="padding-left:35px"><div class="row" id="rowAdTitle">' + AdList[i].txtSubCategoryName + " Available at Rs." + AdList[i].txtPrice + "/" + AdList[i].SellingUnit.slice(0, -1) + '</div><div class="row font12" id="AdCategory">Category: ' + AdList[i].Category + '</div><div class="row font12"><i class="fa fa-map-marker" aria-hidden="true"></i>' + AdList[i].Location + '</div><div class="row font12">' + 'Posted On:' + (AdList[i].PostedDate) + '</div></div><div class="col-lg-3 d-none d-md-block"><div class="row" style="padding:15px; font-weight:bold;font-family:Verdana, Geneva, Tahoma, sans-serif">Rs.' + AdList[i].txtPrice + '<span style="font-size:14px;font-family:Verdana,sans-serif;">' + "/" + AdList[i].SellingUnit.slice(0, -1) + '</span>' + '</span></div><div class="row" style="Color:Green;padding:15px;font-size:14px">✔ Phone Number Verified</div></div></div>');
+
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
