@@ -275,6 +275,9 @@
             }
         });
     });
+    jQuery(document).ready(function () {
+        jQuery("#myImage").css("width", jQuery("#divFileControl").width());
+    });
 </script>
 
 @using (Html.BeginForm("AdDetails", "AddPost", FormMethod.Post, new { id = "AdDetails" }))
@@ -347,7 +350,7 @@
                         <div class="col-md-3 col-sm-3 text-center py-2">
                             <lable>Upload Photo</lable>
                         </div>
-                        <div class="col-md-8 col-sm-8">
+                        <div class="col-md-8 col-sm-8" id="divFileControl">
                             <input type="file" style="border:1px solid grey;border-radius:5px;" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" />
                         </div>
                     </div>

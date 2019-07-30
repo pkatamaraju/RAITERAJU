@@ -11,8 +11,10 @@
         jQuery('#tabHowToRegister').addClass('active');
     });
     jQuery(document).ready(function () {
-        if (jQuery(window).width() < 500) {
-            jQuery("#DivHowToRegister img").css({ "width": "380", "height": "250" });
+        var width = jQuery("#DivHowToRegister").width() - 30;
+        var height = width - 150;
+        if (jQuery(window).width() < 900) {
+            jQuery("#DivHowToRegister img").css({ "width": width, "height": height });
         }
         else {
             jQuery("#DivHowToRegister img").css({ "width": "800px", "height": "450px" });

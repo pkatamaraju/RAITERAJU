@@ -166,6 +166,7 @@
         }
     }
     jQuery(document).ready(function () {
+
         jQuery("#trSubCategoryName").hide();
 
         jQuery("#ddlUnit").change(function () {
@@ -265,6 +266,9 @@
             });
         }
     }
+    jQuery(document).ready(function () {
+        jQuery("#myImage").css("width", jQuery("#divFileControl").width());
+    });
 </script>
 @using (Html.BeginForm("AddPost", "AddPost", FormMethod.Post, new { id = "AddPostForm" }))
 {<div id="divAdPost">
@@ -339,7 +343,7 @@
                                 <div class="col-md-3 col-sm-3 text-center py-2">
                                     <lable>Upload Photo</lable><span class="MandatoryStars">*</span>
                                 </div>
-                                <div class="col-md-8 col-sm-8">
+                                <div class="col-md-8 col-sm-8" id="divFileControl">
                                     <input type="file" style="border:1px solid grey;border-radius:5px;" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" />
                                 </div>
                             </div>

@@ -314,6 +314,21 @@
         var noimg = "/Content/images/NoImage.jpg";
         obj.src=noimg;
     }
+    function fnFiltertoggle() {
+
+        var tempVar = jQuery("#IdAngle").hasClass("fa-angle-double-up");
+
+        jQuery("#AdFilter").toggle();
+        if (!tempVar) {
+            jQuery("#IdAngle").addClass('fa-angle-double-up').removeClass('fa-angle-double-down');
+           
+        }
+        else {
+            jQuery("#IdAngle").addClass('fa-angle-double-down').removeClass('fa-angle-double-up');
+            
+        }
+
+    }
 </script>
 <div id="AdSearchResults" class="MinHight">
     <div class="container">
@@ -323,77 +338,94 @@
             </div>
 
             <div class="col-lg-10 col-sm-10">
+                <div class="row text-right">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6"></div>
 
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12">
-                        <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <span class="FilterLabels">Select Category</span><br />
-                        <select id="ddlCategory" class="form-control" required style="height:35px;"></select>
-                    </div>
-                    <div class="col-lg-3">
-                        <span class="FilterLabels">Select State</span><br />
-                        @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <button onclick="fnFiltertoggle()" id="IdFilter"><i class="fa fa-bars"></i> Filters <i class="fa fa-angle-double-up" aria-hidden="true" id="IdAngle"></i>  </button>
 
                     </div>
-                    <div class="col-lg-3">
-                        <span class="FilterLabels">Select District</span><br />
-                        <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
-                            <option value="">---Select District---</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-3">
-                        <span class="FilterLabels">Select Mandal/Taluka</span><br />
-                        <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
-                            <option value="">---Select Mandal---</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row" style="padding-top:10px;" id="divSort">
-                    <div class="col-lg-9"></div>
-                    <div class="col-lg-3">
-                        <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
-                            <option value="1" selected>Most Recent</option>
-                            <option value="2">Price:Low-High</option>
-                            <option value="3">Price:Hight-Low</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="divAdListDisplay" style="margin-top:50px;">
 
                 </div>
 
-                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
-                    <div class="col-lg-1 col-md-2 d-none d-md-block">
-                    </div>
-                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
-                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
-                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-2 d-none d-md-block">
-                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
-                    </div>
-                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
-                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-xs-3">
-                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
-                        <a id="PageNext" data-value="2" style="cursor:pointer">
-                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
-                        </a>
-                    </div>
-                </div>
+                    <div id="AdFilter" style="display:none;">
 
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
+                                <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select Category</span><br />
+                                <select id="ddlCategory" class="form-control" required style="height:35px;"></select>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select State</span><br />
+                                @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
+
+                            </div>
+
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select District</span><br />
+                                <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
+                                    <option value="">---Select District---</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                                <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
+                                    <option value="">---Select Mandal---</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top:10px;" id="divSort">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
+                        <option value="1" selected>Most Recent</option>
+                        <option value="2">Price:Low-High</option>
+                        <option value="3">Price:Hight-Low</option>
+                    </select>
+                </div>
             </div>
+
+                    </div>
+
+                    <div id="divAdListDisplay" style="margin-top:50px;">
+
+                    </div>
+
+                    <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                        <div class="col-lg-1 col-md-2 d-none d-md-block">
+                        </div>
+                        <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                            <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                                <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-2 d-none d-md-block">
+                            <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                        </div>
+                        <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                            @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-3">
+                            <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                            <a id="PageNext" data-value="2" style="cursor:pointer">
+                                <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
 
             <div class="col-lg-1 col-sm-1">
 

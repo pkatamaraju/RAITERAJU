@@ -377,11 +377,11 @@ li > a:only-child:after { content: ''; }
     width:50px;
     height:50px;
 }
-#Divfooter{
-    padding-top:50px;
-    color:#fff;
-    background-color:#318a30ba;
-    min-height:400px;
+#Divfooter {
+    padding-top: 50px;
+    color: #fff;
+    background-color: #6d9a55;
+    min-height: 400px;
 }
 #Divfooter a{
     color:#fff;
@@ -1017,8 +1017,10 @@ font-size:14px;
 }
 
 
-/*Navigation menu css End*/ 
+/*Navigation menu css End*/
 
 
 
-
+#IdFilter {
+    background-color: #6d9a55;
+}
