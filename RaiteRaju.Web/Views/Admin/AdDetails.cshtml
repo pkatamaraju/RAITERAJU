@@ -263,57 +263,91 @@
 </script>
 
 @using (Html.BeginForm("AdDetails", "Admin", FormMethod.Post, new { id = "AdDetails" }))
-    {
-    <div id="DivAddPost">
-        <div>
-            <table>
-                <tr class="tableRowAddPost"><td colspan="2" id="AddPostHeader">You can edit your Ad here.</td></tr>
-                @*<tr class="tableRowAddPost"><td id="tdLeft"><lable>Add Title</lable><span class="MandatoryStars">*</span></td><td id="tdright">@Html.TextBox("txtAddTitle", (string)ViewBag.Title, new { @class = "form-control" })</td></tr>*@
-                <tr class="tableRowAddPost">
-                    <td id="tdLeft"><lable>Category</lable><span class="MandatoryStars">*</span></td>
-                    <td id="tdright">
-                    @*@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }),(string)@ViewBag.Category, new { @class = "DropdownList", required = "required" })*@
-                        <select id="ddlCategory" class="DropdownList" required>
-                            <option value="">---Select Category---</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr class="tableRowAddPost" id="trSubCategoryName">
-                    <td id="tdLeft"><div class="divsubcategory"><lable id="lblSubCategoryName"></lable><span class="MandatoryStars">*</span></div></td>
-                    <td id="tdright">
-                        <div class="divsubcategory"> @Html.TextBox("txtSubCategoryName", (string)ViewBag.SubCategoryName, new { @class = "DropdownList" })</div>
-                    </td>
-                </tr>
-                <tr class="tableRowAddPost">
-                    <td id="tdLeft"><lable>Ad Description</lable><span class="MandatoryStars">*</span></td>
-                    <td id="tdright">@Html.TextArea("txtAdDescription", (string)ViewBag.Description, new { @class = "form-control" })</td></tr>
-                <tr class="tableRowAddPost">
-                    <td id="tdLeft"><lable>Quantity</lable><span class="MandatoryStars">*</span></td>
-                    <td id="tdright">@Html.TextBox("txtQuantity", (Int32)ViewBag.Quantity, new { @class = "form-control" })@Html.DropDownList("ddlUnit", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.ddlUnits)).Cast<RaiteRaju.ApplicationUtility.ddlUnits>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), (string)@ViewBag.Unit, new { @class = "DropdownList", required = "required" })</td>
-                </tr>
-                <tr class="tableRowAddPost">
-                    <td id="tdLeft"><lable>Price</lable><span class="MandatoryStars">*</span></td>
-                    <td id="tdright">@Html.TextBox("txtPrice", (Int32)ViewBag.Price, new { @class = "form-control" })<label id="pricePerUnit"></label></td></tr>
-                
-                <tr class="tableRowAddPost"><td id="tdLeft"><lable>Upload Photos</lable><span class="MandatoryStars">*</span></td><td><input type="file" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" /></td></tr>
-                <tr class="tableRowAddPost"><td id="tdLeft"></td><td></td></tr>
+{<div class="container">
+        <div class="row">
+            <div class="col-md-2">
 
-            </table>
+            </div>
+            <div class="col-md-8 pr-4">
+                <h3 class="FormHeading">You can edit your Ad here.</h3>
+
+                <div class="form-box clearfix">
+                    <h3 class="form-heading text-center">Edit Now</h3>
+                    <label id="ResponseMessage" style="font-family:inherit;font-size:14px;"></label>
+                    <div class="form-group">
+                        <div class="row py-2">
+                            <div class="col-md-3 col-sm-3 text-center py-2">
+                                <lable>Category<span class="MandatoryStars">*</span> :</lable>
+                            </div>
+                            <div class="col-md-8 col-sm-8">
+                                <select id="ddlCategory" class="form-control" required>
+                                    <option value="">---Select Category---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2" id="trSubCategoryName">
+                            <div class="col-md-3 col-sm-3 text-center py-2">
+                                <div class="divsubcategory">
+                                    <lable id="lblSubCategoryName"> </lable><span class="MandatoryStars">*</span> :
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 col-sm-8">
+                                <div class="divsubcategory">
+                                    @Html.TextBox("txtSubCategoryName", (string)ViewBag.SubCategoryName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-3 col-sm-3 text-center">
+                                <lable>Ad Description<span class="MandatoryStars">*</span> :</lable>
+                            </div>
+                            <div class="col-md-8 col-sm-8">
+                                @Html.TextArea("txtAdDescription", (string)ViewBag.Description, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-3 col-sm-3 text-center py-2">
+                                <lable>Quantity<span class="MandatoryStars">*</span> :</lable>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                @Html.TextBox("txtQuantity", (Int32)ViewBag.Quantity, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                @Html.DropDownList("ddlUnit", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.ddlUnits)).Cast<RaiteRaju.ApplicationUtility.ddlUnits>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), (string)@ViewBag.Unit, new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-3 col-sm-3 text-center py-2">
+                                <lable id="lblPrice">Price (<i class="fa fa-inr" aria-hidden="true"></i>)<span class="MandatoryStars">*</span> :</lable>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                @Html.TextBox("txtPrice", (Int32)ViewBag.Price, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-4">
+                                <label id="pricePerUnit" style="font-family:inherit;font-size:14px;color:black"></label>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-md-3 col-sm-3 text-center py-2">
+                                <lable>Upload Photo</lable>
+                            </div>
+                            <div class="col-md-8 col-sm-8" id="divFileControl">
+                                <input type="file" style="border:1px solid grey;border-radius:5px;" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnSubmit" class="dflt-btn inactive" type="button" value="Submit" onclick="fnAddPost()" />
+                                    <input id="btnCancel" class="dflt-btn inactive" type="button" value="Cancel" onclick="fnCancel()" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div>
-            <table class="tablebutton">
-                <tr>
-
-                    <td id="tdLeft"><input id="btnLogin" class="clsbutton" type="button" value="Submit" onclick="fnAddPost()" /></td>
-                    <td id="tdright"><input id="btnCancel" class="clsbutton" type="button" value="Cancel" onclick="fnCancel()" /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-      </div>
-}
+    </div>}
 
